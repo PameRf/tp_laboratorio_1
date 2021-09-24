@@ -4,9 +4,12 @@
  *
  *
  */
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "calculadora.h"
+
 
 float SumarOperandos(float numero1, float numero2){
 
@@ -16,6 +19,7 @@ float SumarOperandos(float numero1, float numero2){
 
 	return resultadoSuma;
 }
+
 
 float RestarOperandos(float numero1, float numero2){
 
@@ -51,6 +55,18 @@ float MultiplicarOperandos(float numero1, float numero2){
 }
 
 
+float FactoriarOperando (float numero1){
+
+	    int i;
+	    int numeroFactoriado=1;
+
+	    for (i=numero1;i >1 ; i--)
+	    {
+	        numeroFactoriado=numeroFactoriado*i;
+	    }
+
+	    return numeroFactoriado;
+}
 
 
 
