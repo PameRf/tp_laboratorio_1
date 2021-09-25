@@ -19,6 +19,11 @@
 /// @return retorna el valor de la bandera de opcion ingresada.
 int validarOpcion(int opcion, int flagnumero1, int flagnumero2, int flagOpcion);
 
+/// @fn int ErrorDeOpcion(int)
+/// @brief la funcion valida si ingreso un numero fuera de las opciones para informar el error
+///
+/// @param opcion ingresada por el usuario
+/// @return 0 si encontro el error
 int ErrorDeOpcion(int opcion);
 
 
