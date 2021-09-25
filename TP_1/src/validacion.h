@@ -19,5 +19,7 @@
 /// @return retorna el valor de la bandera de opcion ingresada.
 int validarOpcion(int opcion, int flagnumero1, int flagnumero2, int flagOpcion);
 
+int ErrorDeOpcion(int opcion);
+
 
 #endif /* VALIDACION_H_ */

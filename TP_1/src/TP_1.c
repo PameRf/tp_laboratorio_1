@@ -28,11 +28,12 @@ int main(void) {
 	int flagOperandoA=0;
 	int flagOperandoB=0;
 	int flagOpcion=0;
+	int respuestaDeopcion;
 
 
 	do
 	{
-		if(flag==0){
+		if(flag==0||respuestaDeopcion==0){
 		printf("1. Ingrese primer operando A= x \n");
 		printf("2. Ingrese segundo operando B= y \n");
 		printf("3. Calcular todas las operaciones\n"
@@ -48,9 +49,10 @@ int main(void) {
 		printf("Ingrese una opcion: ");
 		scanf("%d", &opcionSeleccionada);
 
+
 		flag=1;
 		}
-		else if(flag==1){
+		else if(flag==1||respuestaDeopcion==0){
 
 		printf("1. Ingrese primer operando A=  %.2f \n", operandoA);
 		printf("2. Ingrese segundo operando B= x \n");
@@ -87,7 +89,15 @@ int main(void) {
 
 		}
 
+
 		flagOpcion= validarOpcion(opcionSeleccionada, flagOperandoA, flagOperandoB, flagOpcion);
+
+		respuestaDeopcion=ErrorDeOpcion(opcionSeleccionada);
+
+		if(respuestaDeopcion==0){
+			printf("Debe ingresar una opcion valida\n");
+		}
+
 
 
 		switch(opcionSeleccionada)
@@ -109,9 +119,10 @@ int main(void) {
 				 resultadoDivision= DividirOperandos(operandoA, operandoB);
 				 resultadoMultiplicacion= MultiplicarOperandos(operandoA, operandoB);
 				 resultadoFactorial= FactoriarOperando(operandoA);
+				 printf("Se estan calculando las operaciones. Ingrese la opcion 4 para mostras los resultados\n");
 				}
 				else{
-					printf("Para realizar la operacion debe Ingresar el operando que falta");
+					printf("Para realizar la operacion debe Ingresar el operando que falta\n");
 				}
 
 			break;
@@ -121,8 +132,14 @@ int main(void) {
 				printf("El resultado de la resta es %.2f: \n",resultadoResta);
 				printf("El resultado de la division es %.2f: \n",resultadoDivision);
 				printf("El resultado de la multiplicacion es %.2f: \n",resultadoMultiplicacion);
+				if(resultadoFactorial>0){
 				printf("El resultado del factorial del operando A es %.2f: \n",resultadoFactorial);
 				}
+				else{
+					printf("No se puede sacar el factorial de un negativo\n");
+				}
+				}
+
 				else{
 					printf("Debe ingresar las opciones anteriores antes de mostrar resultados \n");
 				}

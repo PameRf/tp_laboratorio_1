@@ -4,7 +4,8 @@
  *
  */
 #include "validacion.h"
-
+#include <stdio.h>
+#include <stdlib.h>
 
 int validarOpcion(int opcion, int flagnumero1, int flagnumero2, int flagOpcion){
 
@@ -28,3 +29,14 @@ int validarOpcion(int opcion, int flagnumero1, int flagnumero2, int flagOpcion){
 	    return flagOpcion;
 
 	}
+
+int ErrorDeOpcion(int opcion){
+
+	int retorno= -1;
+	if(opcion != 1 && opcion != 2 && opcion != 3 && opcion != 4 && opcion != 5){
+
+		retorno=0;
+	}
+
+	return retorno;
+}

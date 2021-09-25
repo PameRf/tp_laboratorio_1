@@ -57,16 +57,20 @@ float MultiplicarOperandos(float numero1, float numero2){
 
 float FactoriarOperando (float numero1){
 
-	    int i;
-	    int numeroFactoriado=1;
+    int i;
+    double numeroFactoriado=1;
 
-	    for (i=numero1;i >1 ; i--)
-	    {
-	        numeroFactoriado=numeroFactoriado*i;
-	    }
+    if(numero1> 0){
+    for (i=numero1;i >1 ; i--)
+    {
+        numeroFactoriado=numeroFactoriado*i;
+    }
+    }
+    else{
+    	numeroFactoriado= 0;
+    }
 
-	    return numeroFactoriado;
+    return numeroFactoriado;
 }
-
 
 
