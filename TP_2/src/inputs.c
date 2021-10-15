@@ -13,10 +13,12 @@ int getInt(char mensaje[], char mensajeError[], int min, int max)
 	    validacion=isNumber(bufferString,sizeof bufferString);
 	    numero=atoi(bufferString);
 
-	    while(validacion !=0 && (numero < min || numero > max))
+	    while(validacion== 0 || numero < min || numero > max)
 	    {
 	    printf("%s",mensajeError);
+
 	    validacion=isNumber(bufferString,sizeof bufferString);
+
 	    numero=atoi(bufferString);
 	    }
 
@@ -27,12 +29,12 @@ int getInt(char mensaje[], char mensajeError[], int min, int max)
 
 int isNumber(char cadena[], int tam)
 {
-	int retorno=-1;
+	int retorno= 1;
 	 fflush(stdin);
 	 gets(cadena);
 	int i=0;
 
-	    if(i==0 && (cadena[i]=='-'||cadena[i]=='+'))
+	  if(i==0 && (cadena[i]=='-'||cadena[i]=='+'))
 	    {
 	        i=1;
 	    }
@@ -40,11 +42,12 @@ int isNumber(char cadena[], int tam)
 	    {
 	        if(cadena[i]> '9' && cadena[i]< '0')
 	        {
-	            printf("Error solo igrese numero\n");
-	            retorno=-1;
+	        	retorno=0;
+	            printf("Error solo igrese numeros\n");
+
 	        }
 
-	        retorno=0;
+	        retorno=1;
 	    }
  return retorno;
 }

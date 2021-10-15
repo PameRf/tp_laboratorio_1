@@ -12,11 +12,16 @@
 #include <stdlib.h>
 #include "inputs.h"
 #include <string.h>
+#include "ArrayEmployees.h"
 
 int main(void) {
 
 	int opcion;
+	int respuesta;
+	int flagEmpleado=0;
+	Employee listaEmpleados[ELEMENTS];
 
+	respuesta= initEmployees(listaEmpleados, ELEMENTS);
 
 	do
 		{
@@ -31,7 +36,25 @@ int main(void) {
 
 		opcion= getInt("Ingrese una opcion: \n", "Error ingrese una opcion valida \n",-1,5);
 
-		printf("%d\n", opcion);
+		switch(opcion)
+					 {
+						 case 1:
+
+
+						 break;
+						 case 2:
+							 printf("%d", opcion);
+						 break;
+						 case 3:
+							 printf("%d", opcion);
+						 break;
+						 case 4:
+							 printf("%d", opcion);
+						 break;
+						 case 5:
+						 break;
+
+					 }
 
 
 		 }while(opcion!= 5);
