@@ -10,26 +10,31 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "inputs.h"
+#include <string.h>
 
 int main(void) {
 
 	int opcion;
 
-    do{
-    printf("1- ALTA empleado\n"
-    "2-MODIFICAR empleado\n"
-    "3-BAJA empleado\n"
-    "4-INFORMAR:\n"
-    "A-Los empleados ordenados alfabeticamente por Apellido y Sector\n"
-    "B-Total y promedio de los salarios, y cuantos empleados superan el salario promedio.\n"
-    "0-SALIR\n");
+
+	do
+		{
+
+			printf("\n1.Cargar un Empleado\n");
+		    printf("2.Modificar Empleado\n");
+		    printf("3.Eliminar Empleado\n");
+		    printf("4.Listar\n"
+		    		" A)Los empleados ordenados alfabeticamente por Apellido y Sector\n"
+		    		" B)Total y promedio de los salarios, y cuantos empleados superan el salario promedio.\n");
+		    printf("5.Salir\n");
+
+		opcion= getInt("Ingrese una opcion: \n", "Error ingrese una opcion valida \n",-1,5);
+
+		printf("%d\n", opcion);
 
 
-    }while(opcion != 0);
+		 }while(opcion!= 5);
 
-
-
-    return 0;
+	return 0;
 }
-
-
