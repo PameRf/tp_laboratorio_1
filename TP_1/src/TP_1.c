@@ -26,8 +26,16 @@ int main(void) {
 	long int precioLatam;
 	long int precioConTcDebitoAr;
 	long int precioConTcDebitoLa;
+	long int precioConTcCreditoAr;
+	long int precioConTcCreditoLa;
+	float precioBitcoinAr;
+	float precioBitcoinLa;
 	int validarOpcion;
 	int validarPrecio;
+	float precioUnitarioAr;
+	float precioUnitarioLa;
+	float diferenciaPrecios;
+
 
 	flagMenu=0;
 
@@ -171,9 +179,9 @@ int main(void) {
 			case 2:
 				if(flagMenu==1){
 					if(pedirPrecio(&precioAerolineas, "Ingrese el precio del pasaje de Aerolineas Argentinas: ", "El precio que ingreso no es un precio valido\n"
-						, 9000 , 1000000, 2)==0){
+						, 9000 , 1500000, 2)==0){
 						if(pedirPrecio(&precioLatam, "Ingrese el precio del pasaje de Latam: ", "El precio que ingreso no es un precio valido\n"
-												, 9000 , 1000000, 2)==0){
+												, 9000 , 1500000, 2)==0){
 							flagMenu=2;
 						}
 					}
@@ -186,10 +194,22 @@ int main(void) {
 				break;
 			case 3:
 				if(flagMenu== 2){
-					validarPrecio=Calcular_PagoDebito(&precioConTcDebitoAr, kilometros, precioAerolineas);
-
+					validarPrecio=Calcular_PagoDebito(&precioConTcDebitoAr, precioAerolineas);
+					validarPrecio=Calcular_PagoDebito(&precioConTcDebitoLa, precioLatam);
+					validarPrecio=Calcular_PagoCredito(&precioConTcCreditoAr,precioAerolineas);
+					validarPrecio=Calcular_PagoCredito(&precioConTcCreditoLa, precioLatam);
+					precioBitcoinAr=Calcular_PagoBitcoin(precioAerolineas);
+					precioBitcoinLa=Calcular_PagoBitcoin(precioLatam);
+					printf("los resultados de bitcoin son: %.9lf %.9lf \n", precioBitcoinAr,precioBitcoinLa);
+					precioUnitarioAr=Calcular_PrecioUnitario(kilometros,precioAerolineas);
+					precioUnitarioLa=Calcular_PrecioUnitario(kilometros,precioLatam);
+					printf("los precios unitarios son: %.2f %.2f \n", precioUnitarioAr,precioUnitarioLa);
+					diferenciaPrecios=Calcular_DiferenciaDePrecio(precioAerolineas,precioLatam);
+					printf("La diferencia de precios es : %.2f \n",diferenciaPrecios);
 					if(validarPrecio==0){
-							printf("los resultados son: %ld",precioConTcDebitoAr);
+							printf("los resultados de debito son: %ld %ld \n",precioConTcDebitoAr,precioConTcDebitoLa);
+							printf("los resultados de credito son: %ld %ld \n",precioConTcCreditoAr,precioConTcCreditoLa);
+
 							flagMenu=3;
 							break;
 					}
