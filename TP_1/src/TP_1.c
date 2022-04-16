@@ -11,9 +11,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "calculos.h"
+#include "cargas.h"
 
-int pedirNumero(int* , char mensaje[], char error[], int minimo, int maximo, int reintentos);
-int pedirPrecio(long int* pPrecio, char mensaje[], char error[], int minimo, long int maximo, int reintentos);
 
 int main(void) {
 
@@ -31,7 +30,6 @@ int main(void) {
 	float precioBitcoinAr;
 	float precioBitcoinLa;
 	int validarOpcion;
-	int validarPrecio;
 	float precioUnitarioAr;
 	float precioUnitarioLa;
 	float diferenciaPrecios;
@@ -104,7 +102,7 @@ int main(void) {
 			validarOpcion= pedirNumero(&opcionMenu, "Ingrese una opcion: ", "La opcion ingresada no es valida\n",1, 6,2);
 
 		}
-		else if(flagMenu==2){
+		else if(flagMenu==2||flagMenu==3){
 
 			printf("1) Ingresar Kilómetros: (km=%d)\n",kilometros);
 			printf("2) Ingresar Precio de Vuelos: (Aerolíneas= %ld, Latam=%ld)\n"
@@ -135,8 +133,7 @@ int main(void) {
 
 			validarOpcion= pedirNumero(&opcionMenu, "Ingrese una opcion: ", "La opcion ingresada no es valida",1, 6,2);
 		}
-		else if(flagMenu==3){
-
+		else if(flagMenu==4){
 			printf("1) Ingresar Kilómetros: (km=%d)\n",kilometros);
 			printf("2) Ingresar Precio de Vuelos: (Aerolíneas= %ld, Latam=%ld)\n"
 					 "- Precio vuelo Aerolíneas: \n"
@@ -148,25 +145,60 @@ int main(void) {
 					 "d) Mostrar precio por km (precio unitario)\n"
 					 "e) Mostrar diferencia de precio ingresada (Latam - Aerolíneas)\n");
 
+
 			printf("4) Informar Resultados\n"
 					  "Latam:\n"
-					   "a) Precio con tarjeta de débito: r\n"
-					   "b) Precio con tarjeta de crédito: r\n"
-					   "c) Precio pagando con bitcoin : r\n"
-					   "d) Precio unitario: r\n"
+					   "a) Precio con tarjeta de débito:%ld\n"
+					   "b) Precio con tarjeta de crédito:%ld\n"
+					   "c) Precio pagando con bitcoin : %.9lf\n"
+					   "d) Precio unitario:%.2f\n"
 					   "Aerolíneas:\n"
-					   "a) Precio con tarjeta de débito: r\n"
-					   "b) Precio con tarjeta de crédito: r\n"
-					   "c) Precio pagando con bitcoin : r\n"
-					   "d) Precio unitario: r\n"
-					   "La diferencia de precio es : r \n");
+					   "a) Precio con tarjeta de débito:%ld\n"
+					   "b) Precio con tarjeta de crédito:%ld\n"
+					   "c) Precio pagando con bitcoin : %.9lf\n"
+					   "d) Precio unitario:%.2f\n"
+					   "La diferencia de precio es: %.2f\n",precioConTcDebitoLa, precioConTcCreditoLa, precioBitcoinLa,precioUnitarioLa,
+					   precioConTcDebitoAr, precioConTcCreditoAr, precioBitcoinAr, precioUnitarioAr, diferenciaPrecios);
+			printf("5) Carga forzada de datos\n");
+						printf("6) Salir\n");
+
+
+			validarOpcion= pedirNumero(&opcionMenu, "Ingrese una opcion: ", "La opcion ingresada no es valida",1, 6,2);
+
+		}
+		else if(flagMenu==5){
+			printf("1) Ingresar Kilómetros: (km=%d)\n",kilometros);
+			printf("2) Ingresar Precio de Vuelos: (Aerolíneas= %ld, Latam=%ld)\n"
+					 "- Precio vuelo Aerolíneas: \n"
+					 "- Precio vuelo Latam: \n", precioAerolineas,precioLatam);
+			printf("3) Calcular todos los costos: \n"
+					 "a) Tarjeta de débito (descuento 10%%)\n"
+					 "b) Tarjeta de crédito (interés 25%%)\n"
+					 "c) Bitcoin (1BTC -> 4606954.55 Pesos Argentinos)\n"
+					 "d) Mostrar precio por km (precio unitario)\n"
+					 "e) Mostrar diferencia de precio ingresada (Latam - Aerolíneas)\n");
+			printf("4) Informar Resultados\n"
+					 "Latam:\n"
+					  "a) Precio con tarjeta de débito:%ld\n"
+					  "b) Precio con tarjeta de crédito:%ld\n"
+					  "c) Precio pagando con bitcoin : %.9lf\n"
+					  "d) Precio unitario:%.2f\n"
+					  "Aerolíneas:\n"
+					  "a) Precio con tarjeta de débito:%ld\n"
+					  "b) Precio con tarjeta de crédito:%ld\n"
+					  "c) Precio pagando con bitcoin : %.9lf\n"
+					  "d) Precio unitario:%.2f\n"
+					  "La diferencia de precio es: %.2f\n",precioConTcDebitoLa, precioConTcCreditoLa, precioBitcoinLa,precioUnitarioLa,
+					   precioConTcDebitoAr, precioConTcCreditoAr, precioBitcoinAr, precioUnitarioAr, diferenciaPrecios);
+
 			printf("5) Carga forzada de datos\n");
 			printf("6) Salir\n");
 
+			validarOpcion= pedirNumero(&opcionMenu, "Ingrese una opcion: ", "La opcion ingresada no es valida",1, 6,2);
 
 
-			validarOpcion= pedirNumero(&opcionMenu, "Ingrese una opcion:", "La opcion ingresada no es valida\n",1, 6,2);
-				}
+
+		}
 		if(validarOpcion== 0){
 		switch(opcionMenu){
 			case 1:
@@ -181,7 +213,7 @@ int main(void) {
 					if(pedirPrecio(&precioAerolineas, "Ingrese el precio del pasaje de Aerolineas Argentinas: ", "El precio que ingreso no es un precio valido\n"
 						, 9000 , 1500000, 2)==0){
 						if(pedirPrecio(&precioLatam, "Ingrese el precio del pasaje de Latam: ", "El precio que ingreso no es un precio valido\n"
-												, 9000 , 1500000, 2)==0){
+							, 9000 , 1500000, 2)==0){
 							flagMenu=2;
 						}
 					}
@@ -194,39 +226,68 @@ int main(void) {
 				break;
 			case 3:
 				if(flagMenu== 2){
-					validarPrecio=Calcular_PagoDebito(&precioConTcDebitoAr, precioAerolineas);
-					validarPrecio=Calcular_PagoDebito(&precioConTcDebitoLa, precioLatam);
-					validarPrecio=Calcular_PagoCredito(&precioConTcCreditoAr,precioAerolineas);
-					validarPrecio=Calcular_PagoCredito(&precioConTcCreditoLa, precioLatam);
-					precioBitcoinAr=Calcular_PagoBitcoin(precioAerolineas);
-					precioBitcoinLa=Calcular_PagoBitcoin(precioLatam);
-					printf("los resultados de bitcoin son: %.9lf %.9lf \n", precioBitcoinAr,precioBitcoinLa);
-					precioUnitarioAr=Calcular_PrecioUnitario(kilometros,precioAerolineas);
-					precioUnitarioLa=Calcular_PrecioUnitario(kilometros,precioLatam);
-					printf("los precios unitarios son: %.2f %.2f \n", precioUnitarioAr,precioUnitarioLa);
-					diferenciaPrecios=Calcular_DiferenciaDePrecio(precioAerolineas,precioLatam);
-					printf("La diferencia de precios es : %.2f \n",diferenciaPrecios);
-					if(validarPrecio==0){
-							printf("los resultados de debito son: %ld %ld \n",precioConTcDebitoAr,precioConTcDebitoLa);
-							printf("los resultados de credito son: %ld %ld \n",precioConTcCreditoAr,precioConTcCreditoLa);
+					if(Calcular_PagoDebito(&precioConTcDebitoAr, precioAerolineas)==0 && Calcular_PagoDebito(&precioConTcDebitoLa, precioLatam)==0 &&
+					Calcular_PagoCredito(&precioConTcCreditoAr,precioAerolineas)==0 && Calcular_PagoCredito(&precioConTcCreditoLa, precioLatam)==0){
+						precioBitcoinAr=Calcular_PagoBitcoin(precioAerolineas);
+						precioBitcoinLa=Calcular_PagoBitcoin(precioLatam);
+						precioUnitarioAr=Calcular_PrecioUnitario(kilometros,precioAerolineas);
+						precioUnitarioLa=Calcular_PrecioUnitario(kilometros,precioLatam);
+						diferenciaPrecios=Calcular_DiferenciaDePrecio(precioAerolineas,precioLatam);
+						printf("Se estan realizando los calculos por medio de pago");
+						flagMenu=3;
 
-							flagMenu=3;
-							break;
 					}
+
+					break;
+
 				}
+
 
 				else{
 					printf("Primero debe ingresar las opciones anteriores\n");
 				}
 				break;
 			case 4:
+
 				if(flagMenu==3){
-					printf("Se muestran  los resultados");
+					printf("Los resultados son: \n");
+					flagMenu=4;
+					break;
 				}
+
 				else{
 					printf("Primero debe ingresar las opciones anteriores\n");
 				}
+
+
 				break;
+			case 5:
+
+
+				   kilometros= 7090;
+				   precioAerolineas= 162965;
+				   precioLatam= 159339;
+
+				   Calcular_PagoDebito(&precioConTcDebitoAr, precioAerolineas);
+				   Calcular_PagoDebito(&precioConTcDebitoLa, precioLatam);
+				   Calcular_PagoCredito(&precioConTcCreditoAr,precioAerolineas);
+				   Calcular_PagoCredito(&precioConTcCreditoLa, precioLatam);
+				   precioBitcoinAr=Calcular_PagoBitcoin(precioAerolineas);
+				   precioBitcoinLa=Calcular_PagoBitcoin(precioLatam);
+				   precioUnitarioAr=Calcular_PrecioUnitario(kilometros,precioAerolineas);
+				   precioUnitarioLa=Calcular_PrecioUnitario(kilometros,precioLatam);
+				   diferenciaPrecios=Calcular_DiferenciaDePrecio(precioAerolineas,precioLatam);
+				   printf("Se estan realizando los calculos por medio de pago\n");
+				   flagMenu=5;
+
+
+				break;
+			case 6:
+
+				 printf("Gracias por elegi Smart trips");
+
+				 break;
+
 
 		}
 	  }
@@ -241,60 +302,3 @@ int main(void) {
 	return EXIT_SUCCESS;
 }
 
-int pedirNumero(int* pOpcion, char mensaje[], char error[], int minimo, int maximo, int reintentos){
-
-	int retorno;
-	int auxiliar;
-	retorno=-1;
-
-	if(pOpcion != NULL && mensaje != NULL && error != NULL && minimo <= maximo && reintentos>= 0 ){
-
-		do{
-		printf("%s", mensaje);
-		scanf("%d", &auxiliar);
-		reintentos--;
-
-		if(auxiliar >= minimo && auxiliar <= maximo){
-			*pOpcion= auxiliar;
-			retorno=0;
-			break;
-		}
-		else{
-			printf("%s", error);
-		}
-
-
-		}while(reintentos > 0);
-
-	}
-	return retorno;
-}
-
-int pedirPrecio(long int* pPrecio, char mensaje[], char error[], int minimo, long int maximo, int reintentos){
-
-	int retorno;
-	int precioAuxiliar;
-	retorno=-1;
-
-	if(pPrecio != NULL && mensaje != NULL && error != NULL && minimo <= maximo && reintentos>= 0 ){
-
-		do{
-		printf("%s", mensaje);
-		scanf("%d", &precioAuxiliar);
-		reintentos--;
-
-		if(precioAuxiliar >= minimo && precioAuxiliar <= maximo){
-			*pPrecio= precioAuxiliar;
-			retorno=0;
-			break;
-		}
-		else{
-			printf("%s", error);
-		}
-
-
-		}while(reintentos > 0);
-
-	}
-	return retorno;
-}
