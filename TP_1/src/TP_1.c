@@ -1,8 +1,8 @@
 /*
  ============================================================================
  Name        : TP_1.c
- Author      : 
- Version     :
+ Author      : Pamela Romina Freire
+ Division    : 1E
  Copyright   : Your copyright notice
  Description : Hello World in C, Ansi-style
  ============================================================================
@@ -21,12 +21,12 @@ int main(void) {
 	int opcionMenu;
 	int flagMenu;
 	int kilometros;
-	long int precioAerolineas;
-	long int precioLatam;
-	long int precioConTcDebitoAr;
-	long int precioConTcDebitoLa;
-	long int precioConTcCreditoAr;
-	long int precioConTcCreditoLa;
+	int precioAerolineas;
+	int precioLatam;
+	float precioConTcDebitoAr;
+	float precioConTcDebitoLa;
+	float precioConTcCreditoAr;
+	float precioConTcCreditoLa;
 	float precioBitcoinAr;
 	float precioBitcoinLa;
 	int validarOpcion;
@@ -105,7 +105,7 @@ int main(void) {
 		else if(flagMenu==2||flagMenu==3){
 
 			printf("1) Ingresar Kilómetros: (km=%d)\n",kilometros);
-			printf("2) Ingresar Precio de Vuelos: (Aerolíneas= %ld, Latam=%ld)\n"
+			printf("2) Ingresar Precio de Vuelos: (Aerolíneas= %d, Latam=%d)\n"
 					 "- Precio vuelo Aerolíneas: \n"
 					 "- Precio vuelo Latam: \n", precioAerolineas,precioLatam);
 			printf("3) Calcular todos los costos: \n"
@@ -135,7 +135,7 @@ int main(void) {
 		}
 		else if(flagMenu==4){
 			printf("1) Ingresar Kilómetros: (km=%d)\n",kilometros);
-			printf("2) Ingresar Precio de Vuelos: (Aerolíneas= %ld, Latam=%ld)\n"
+			printf("2) Ingresar Precio de Vuelos: (Aerolíneas= %d, Latam=%d)\n"
 					 "- Precio vuelo Aerolíneas: \n"
 					 "- Precio vuelo Latam: \n", precioAerolineas,precioLatam);
 			printf("3) Calcular todos los costos: \n"
@@ -148,13 +148,13 @@ int main(void) {
 
 			printf("4) Informar Resultados\n"
 					  "Latam:\n"
-					   "a) Precio con tarjeta de débito:%ld\n"
-					   "b) Precio con tarjeta de crédito:%ld\n"
+					   "a) Precio con tarjeta de débito:%.2f\n"
+					   "b) Precio con tarjeta de crédito:%.2f\n"
 					   "c) Precio pagando con bitcoin : %.9lf\n"
 					   "d) Precio unitario:%.2f\n"
 					   "Aerolíneas:\n"
-					   "a) Precio con tarjeta de débito:%ld\n"
-					   "b) Precio con tarjeta de crédito:%ld\n"
+					   "a) Precio con tarjeta de débito:%.2f\n"
+					   "b) Precio con tarjeta de crédito:%.2f\n"
 					   "c) Precio pagando con bitcoin : %.9lf\n"
 					   "d) Precio unitario:%.2f\n"
 					   "La diferencia de precio es: %.2f\n",precioConTcDebitoLa, precioConTcCreditoLa, precioBitcoinLa,precioUnitarioLa,
@@ -168,7 +168,7 @@ int main(void) {
 		}
 		else if(flagMenu==5){
 			printf("1) Ingresar Kilómetros: (km=%d)\n",kilometros);
-			printf("2) Ingresar Precio de Vuelos: (Aerolíneas= %ld, Latam=%ld)\n"
+			printf("2) Ingresar Precio de Vuelos: (Aerolíneas= %d, Latam=%d)\n"
 					 "- Precio vuelo Aerolíneas: \n"
 					 "- Precio vuelo Latam: \n", precioAerolineas,precioLatam);
 			printf("3) Calcular todos los costos: \n"
@@ -179,13 +179,13 @@ int main(void) {
 					 "e) Mostrar diferencia de precio ingresada (Latam - Aerolíneas)\n");
 			printf("4) Informar Resultados\n"
 					 "Latam:\n"
-					  "a) Precio con tarjeta de débito:%ld\n"
-					  "b) Precio con tarjeta de crédito:%ld\n"
+					  "a) Precio con tarjeta de débito:%.2f\n"
+					  "b) Precio con tarjeta de crédito:%.2f\n"
 					  "c) Precio pagando con bitcoin : %.9lf\n"
 					  "d) Precio unitario:%.2f\n"
 					  "Aerolíneas:\n"
-					  "a) Precio con tarjeta de débito:%ld\n"
-					  "b) Precio con tarjeta de crédito:%ld\n"
+					  "a) Precio con tarjeta de débito:%.2f\n"
+					  "b) Precio con tarjeta de crédito:%.2f\n"
 					  "c) Precio pagando con bitcoin : %.9lf\n"
 					  "d) Precio unitario:%.2f\n"
 					  "La diferencia de precio es: %.2f\n",precioConTcDebitoLa, precioConTcCreditoLa, precioBitcoinLa,precioUnitarioLa,
@@ -210,9 +210,9 @@ int main(void) {
 
 			case 2:
 				if(flagMenu==1){
-					if(pedirPrecio(&precioAerolineas, "Ingrese el precio del pasaje de Aerolineas Argentinas: ", "El precio que ingreso no es un precio valido\n"
+					if(pedirNumero(&precioAerolineas, "Ingrese el precio del pasaje de Aerolineas Argentinas: ", "El precio que ingreso no es un precio valido\n"
 						, 9000 , 1500000, 2)==0){
-						if(pedirPrecio(&precioLatam, "Ingrese el precio del pasaje de Latam: ", "El precio que ingreso no es un precio valido\n"
+						if(pedirNumero(&precioLatam, "Ingrese el precio del pasaje de Latam: ", "El precio que ingreso no es un precio valido\n"
 							, 9000 , 1500000, 2)==0){
 							flagMenu=2;
 						}
@@ -233,7 +233,7 @@ int main(void) {
 						precioUnitarioAr=Calcular_PrecioUnitario(kilometros,precioAerolineas);
 						precioUnitarioLa=Calcular_PrecioUnitario(kilometros,precioLatam);
 						diferenciaPrecios=Calcular_DiferenciaDePrecio(precioAerolineas,precioLatam);
-						printf("Se estan realizando los calculos por medio de pago");
+						printf("Se estan realizando los calculos por medio de pago\n");
 						flagMenu=3;
 
 					}

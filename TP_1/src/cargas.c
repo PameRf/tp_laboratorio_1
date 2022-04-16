@@ -37,31 +37,4 @@ int pedirNumero(int* pOpcion, char mensaje[], char error[], int minimo, int maxi
 	return retorno;
 }
 
-int pedirPrecio(long int* pPrecio, char mensaje[], char error[], int minimo, long int maximo, int reintentos){
 
-	int retorno;
-	int precioAuxiliar;
-	retorno=-1;
-
-	if(pPrecio != NULL && mensaje != NULL && error != NULL && minimo <= maximo && reintentos>= 0 ){
-
-		do{
-		printf("%s", mensaje);
-		scanf("%d", &precioAuxiliar);
-		reintentos--;
-
-		if(precioAuxiliar >= minimo && precioAuxiliar <= maximo){
-			*pPrecio= precioAuxiliar;
-			retorno=0;
-			break;
-		}
-		else{
-			printf("%s", error);
-		}
-
-
-		}while(reintentos > 0);
-
-	}
-	return retorno;
-}

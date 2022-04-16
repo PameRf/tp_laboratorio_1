@@ -7,11 +7,11 @@
 
 #include "calculos.h"
 
-int Calcular_PagoDebito(long int* resultado, long int precio){
+int Calcular_PagoDebito(float* resultado, int precio){
 
  int retorno;
  double descuento;
- long int auxiliar;
+ float auxiliar;
  retorno=-1;
 
  if(resultado!= NULL && precio>0){
@@ -26,11 +26,11 @@ int Calcular_PagoDebito(long int* resultado, long int precio){
 
 }
 
-int Calcular_PagoCredito(long int* resultado, long int precio){
+int Calcular_PagoCredito(float* resultado, int precio){
 
 	int retorno;
 	double interes;
-	long int auxiliar;
+	float auxiliar;
 	retorno=-1;
 
 	 if(resultado!= NULL && precio>0){
@@ -46,7 +46,7 @@ int Calcular_PagoCredito(long int* resultado, long int precio){
 
 }
 
-float Calcular_PagoBitcoin(long int precio){
+float Calcular_PagoBitcoin(int precio){
 
 
 	float auxbitcoin;
@@ -57,18 +57,18 @@ float Calcular_PagoBitcoin(long int precio){
 
 }
 
-float  Calcular_PrecioUnitario(int kilometros,long int precio){
+float  Calcular_PrecioUnitario(int kilometros,int precio){
 
 	float precioUnitario;
 
 	if(precio> 0){
-		precioUnitario=precio/kilometros;
+		precioUnitario=(float)precio/kilometros;
 	}
 
 	return precioUnitario;
 }
 
-float Calcular_DiferenciaDePrecio(long int precioUno,long int precioDos){
+float Calcular_DiferenciaDePrecio(int precioUno, int precioDos){
 
 	int resultado;
 

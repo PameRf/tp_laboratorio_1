@@ -13,9 +13,37 @@
 #define INTERES_TC 25
 
 
-int Calcular_PagoDebito(long int* resultado, long int precio);
-int Calcular_PagoCredito(long int* resultado, long int precio);
-float Calcular_PagoBitcoin(long int precio);
-float Calcular_PrecioUnitario(int kilometros,long int precio);
-float Calcular_DiferenciaDePrecio(long int precioUno,long int precioDos);
+/// @brief La funcion calcula el precio resultado del 10% de decuento por pago con debito. Utilizo regla de tres simple,
+/// luego al precio le resto el descuento obtenido.
+///
+/// @param resultado se pasa la direccion de memoria donde va a escribir el precio con descuento obtenido.
+/// @param precio recibe el precio a calcular (pasaje por valor).
+/// @return retorna 0 si la funcion finaliza con exito y -1 si no se pudo obtener el resultado.
+int Calcular_PagoDebito(float* resultado, int precio);
+/// @brief  La funcion calcula el precio resultado del 25% de decuento por pago con credito. Utilizo regla de tres simple,
+/// luego al precio le sumo el interes obtenido.
+///
+/// @param resultado se pasa la direccion de memoria donde va a escribir el precio con el interes obtenido.
+/// @param precio recibe el precio a calcular (pasaje por valor).
+/// @return retorna 0 si la funcion finaliza con exito y -1 si no se pudo obtener el resultado.
+int Calcular_PagoCredito(float* resultado, int precio);
+/// @brief La funcion calcula el precio resultado  dividiendo el precio con BITCOIN
+///
+/// @param precio recibe el precio a calcular (pasaje por valor).
+/// @return el reseultado de cuando le queda abonando con BITCOIN
+float Calcular_PagoBitcoin(int precio);
+/// @brief calcula el precio unitario dividiendo el precio que recibe como parametro  y lo divide por los kilometros
+/// que recibe de igual manera.
+///
+/// @param kilometros recibe los kilometros que ingreso el usuario(pasaje por valor).
+/// @param precio recibe el precio que ingreso el usuario(pasaje por valor).
+/// @return el precio unitario obtenido.
+float Calcular_PrecioUnitario(int kilometros,int precio);
+/// @brief  La funcion recibe los dos precios ingresados, compara cual es el precio mayor entre ambos, al precio mayor resto el menor
+/// y brindo el resultado obtenido si ambos precios son iguales retorna 0 diferencia
+///
+/// @param precioUno recibe el primer precio a calcular (pasaje por valor).
+/// @param precioDos recibe el segundo a calcular (pasaje por valor).
+/// @return la diferencia obtenida o 0 si ambos precios son iguales.
+float Calcular_DiferenciaDePrecio( int precioUno, int precioDos);
 #endif /* CALCULOS_H_ */
