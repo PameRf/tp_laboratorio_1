@@ -21,8 +21,8 @@ int main(void) {
 	int opcionMenu;
 	int flagMenu;
 	int kilometros;
-	int precioAerolineas;
-	int precioLatam;
+	float precioAerolineas;
+	float precioLatam;
 	float precioConTcDebitoAr;
 	float precioConTcDebitoLa;
 	float precioConTcCreditoAr;
@@ -66,9 +66,6 @@ int main(void) {
 			printf("5) Carga forzada de datos\n");
 			printf("6) Salir\n");
 
-			validarOpcion= pedirNumero(&opcionMenu, "Ingrese una opcion:", "La opcion ingresada no es valida",1, 6,2);
-
-
 		}
 		else if(flagMenu==1){
 
@@ -98,14 +95,11 @@ int main(void) {
 			printf("5) Carga forzada de datos\n");
 			printf("6) Salir\n");
 
-
-			validarOpcion= pedirNumero(&opcionMenu, "Ingrese una opcion: ", "La opcion ingresada no es valida\n",1, 6,2);
-
 		}
 		else if(flagMenu==2||flagMenu==3){
 
 			printf("1) Ingresar Kilómetros: (km=%d)\n",kilometros);
-			printf("2) Ingresar Precio de Vuelos: (Aerolíneas= %d, Latam=%d)\n"
+			printf("2) Ingresar Precio de Vuelos: (Aerolíneas= %.2f, Latam=%.2f)\n"
 					 "- Precio vuelo Aerolíneas: \n"
 					 "- Precio vuelo Latam: \n", precioAerolineas,precioLatam);
 			printf("3) Calcular todos los costos: \n"
@@ -130,12 +124,10 @@ int main(void) {
 			printf("5) Carga forzada de datos\n");
 			printf("6) Salir\n");
 
-
-			validarOpcion= pedirNumero(&opcionMenu, "Ingrese una opcion: ", "La opcion ingresada no es valida",1, 6,2);
 		}
 		else if(flagMenu==4){
 			printf("1) Ingresar Kilómetros: (km=%d)\n",kilometros);
-			printf("2) Ingresar Precio de Vuelos: (Aerolíneas= %d, Latam=%d)\n"
+			printf("2) Ingresar Precio de Vuelos: (Aerolíneas= %.2f, Latam=%.2f)\n"
 					 "- Precio vuelo Aerolíneas: \n"
 					 "- Precio vuelo Latam: \n", precioAerolineas,precioLatam);
 			printf("3) Calcular todos los costos: \n"
@@ -162,13 +154,10 @@ int main(void) {
 			printf("5) Carga forzada de datos\n");
 						printf("6) Salir\n");
 
-
-			validarOpcion= pedirNumero(&opcionMenu, "Ingrese una opcion: ", "La opcion ingresada no es valida",1, 6,2);
-
 		}
 		else if(flagMenu==5){
 			printf("1) Ingresar Kilómetros: (km=%d)\n",kilometros);
-			printf("2) Ingresar Precio de Vuelos: (Aerolíneas= %d, Latam=%d)\n"
+			printf("2) Ingresar Precio de Vuelos: (Aerolíneas= %.2f, Latam=%.2f)\n"
 					 "- Precio vuelo Aerolíneas: \n"
 					 "- Precio vuelo Latam: \n", precioAerolineas,precioLatam);
 			printf("3) Calcular todos los costos: \n"
@@ -194,108 +183,86 @@ int main(void) {
 			printf("5) Carga forzada de datos\n");
 			printf("6) Salir\n");
 
-			validarOpcion= pedirNumero(&opcionMenu, "Ingrese una opcion: ", "La opcion ingresada no es valida",1, 6,2);
-
-
-
 		}
+
+		validarOpcion= pedirNumero(&opcionMenu, "Ingrese una opcion: ", "La opcion ingresada no es valida",1, 6,2);
+
 		if(validarOpcion== 0){
-		switch(opcionMenu){
-			case 1:
-				if(pedirNumero(&kilometros, "Ingrese los Kilometros del vuelo:", "Los kilometros se encuentran fuera del rango \n",
-						400, 13000, 2)==0){
-					flagMenu=1;
-				}
-				break;
+			switch(opcionMenu){
+				case 1:
+					if(pedirNumero(&kilometros, "Ingrese los Kilometros del vuelo:", "Los kilometros se encuentran fuera del rango \n",
+							400, 13000, 2)==0){
+						flagMenu=1;
+					}
+					break;
 
-			case 2:
-				if(flagMenu==1){
-					if(pedirNumero(&precioAerolineas, "Ingrese el precio del pasaje de Aerolineas Argentinas: ", "El precio que ingreso no es un precio valido\n"
-						, 9000 , 1500000, 2)==0){
-						if(pedirNumero(&precioLatam, "Ingrese el precio del pasaje de Latam: ", "El precio que ingreso no es un precio valido\n"
+				case 2:
+					if(flagMenu==1){
+						if(pedirPrecio(&precioAerolineas, "Ingrese el precio del pasaje de Aerolineas Argentinas: ", "El precio que ingreso no es un precio valido\n"
 							, 9000 , 1500000, 2)==0){
-							flagMenu=2;
+							if(pedirPrecio(&precioLatam, "Ingrese el precio del pasaje de Latam: ", "El precio que ingreso no es un precio valido\n"
+								, 9000 , 1500000, 2)==0){
+								flagMenu=2;
+							}
 						}
+						break;
 					}
-
-					break;
-				}
-				else{
-					printf("Primero debe ingresar los Kilometros\n");
-				}
-				break;
-			case 3:
-				if(flagMenu== 2){
-					if(Calcular_PagoDebito(&precioConTcDebitoAr, precioAerolineas)==0 && Calcular_PagoDebito(&precioConTcDebitoLa, precioLatam)==0 &&
-					Calcular_PagoCredito(&precioConTcCreditoAr,precioAerolineas)==0 && Calcular_PagoCredito(&precioConTcCreditoLa, precioLatam)==0){
-						precioBitcoinAr=Calcular_PagoBitcoin(precioAerolineas);
-						precioBitcoinLa=Calcular_PagoBitcoin(precioLatam);
-						precioUnitarioAr=Calcular_PrecioUnitario(kilometros,precioAerolineas);
-						precioUnitarioLa=Calcular_PrecioUnitario(kilometros,precioLatam);
-						diferenciaPrecios=Calcular_DiferenciaDePrecio(precioAerolineas,precioLatam);
-						printf("Se estan realizando los calculos por medio de pago\n");
-						flagMenu=3;
-
+					else{
+						printf("Primero debe ingresar los Kilometros\n");
 					}
-
 					break;
-
-				}
-
-
-				else{
-					printf("Primero debe ingresar las opciones anteriores\n");
-				}
-				break;
-			case 4:
-
-				if(flagMenu==3){
-					printf("Los resultados son: \n");
-					flagMenu=4;
+				case 3:
+					if(flagMenu== 2){
+						if(Calcular_PagoDebito(&precioConTcDebitoAr, precioAerolineas)==0 && Calcular_PagoDebito(&precioConTcDebitoLa, precioLatam)==0 &&
+						Calcular_PagoCredito(&precioConTcCreditoAr,precioAerolineas)==0 && Calcular_PagoCredito(&precioConTcCreditoLa, precioLatam)==0){
+							precioBitcoinAr=Calcular_PagoBitcoin(precioAerolineas);
+							precioBitcoinLa=Calcular_PagoBitcoin(precioLatam);
+							precioUnitarioAr=Calcular_PrecioUnitario(kilometros,precioAerolineas);
+							precioUnitarioLa=Calcular_PrecioUnitario(kilometros,precioLatam);
+							diferenciaPrecios=Calcular_DiferenciaDePrecio(precioAerolineas,precioLatam);
+							printf("Se estan realizando los calculos por medio de pago\n");
+							flagMenu=3;
+						}
+						break;
+					}
+					else{
+						printf("Primero debe ingresar las opciones anteriores\n");
+					}
 					break;
-				}
+				case 4:
+					if(flagMenu==3){
+						printf("Los resultados son: \n");
+						flagMenu=4;
+						break;
+					}
+					else{
+						printf("Primero debe ingresar las opciones anteriores\n");
+					}
+					break;
+				case 5:
+					   kilometros= 7090;
+					   precioAerolineas= 162965;
+					   precioLatam= 159339;
 
-				else{
-					printf("Primero debe ingresar las opciones anteriores\n");
-				}
-
-
-				break;
-			case 5:
-
-
-				   kilometros= 7090;
-				   precioAerolineas= 162965;
-				   precioLatam= 159339;
-
-				   Calcular_PagoDebito(&precioConTcDebitoAr, precioAerolineas);
-				   Calcular_PagoDebito(&precioConTcDebitoLa, precioLatam);
-				   Calcular_PagoCredito(&precioConTcCreditoAr,precioAerolineas);
-				   Calcular_PagoCredito(&precioConTcCreditoLa, precioLatam);
-				   precioBitcoinAr=Calcular_PagoBitcoin(precioAerolineas);
-				   precioBitcoinLa=Calcular_PagoBitcoin(precioLatam);
-				   precioUnitarioAr=Calcular_PrecioUnitario(kilometros,precioAerolineas);
-				   precioUnitarioLa=Calcular_PrecioUnitario(kilometros,precioLatam);
-				   diferenciaPrecios=Calcular_DiferenciaDePrecio(precioAerolineas,precioLatam);
-				   printf("Se estan realizando los calculos por medio de pago\n");
-				   flagMenu=5;
-
-
-				break;
-			case 6:
-
-				 printf("Gracias por elegi Smart trips");
-
-				 break;
-
-
-		}
+					   Calcular_PagoDebito(&precioConTcDebitoAr, precioAerolineas);
+					   Calcular_PagoDebito(&precioConTcDebitoLa, precioLatam);
+					   Calcular_PagoCredito(&precioConTcCreditoAr,precioAerolineas);
+					   Calcular_PagoCredito(&precioConTcCreditoLa, precioLatam);
+					   precioBitcoinAr=Calcular_PagoBitcoin(precioAerolineas);
+					   precioBitcoinLa=Calcular_PagoBitcoin(precioLatam);
+					   precioUnitarioAr=Calcular_PrecioUnitario(kilometros,precioAerolineas);
+					   precioUnitarioLa=Calcular_PrecioUnitario(kilometros,precioLatam);
+					   diferenciaPrecios=Calcular_DiferenciaDePrecio(precioAerolineas,precioLatam);
+					   printf("Se estan realizando los calculos por medio de pago\n");
+					   flagMenu=5;
+					break;
+				case 6:
+					 printf("Gracias por elegir Smart trips");
+					 break;
+			}
 	  }
 
-
-
-
-	}while(opcionMenu != 6);
+   }while(opcionMenu != 6);
 
 
 

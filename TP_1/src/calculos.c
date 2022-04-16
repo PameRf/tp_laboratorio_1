@@ -9,37 +9,37 @@
 
 int Calcular_PagoDebito(float* resultado, int precio){
 
- int retorno;
- double descuento;
- float auxiliar;
- retorno=-1;
+		 int retorno;
+		 double descuento;
+		 float auxiliar;
+		 retorno=-1;
 
- if(resultado!= NULL && precio>0){
+		 if(resultado!= NULL && precio>0){
 
-	 descuento= (precio*DESCUENTO_TC)/100;
-	 auxiliar= precio - descuento;
-	 *resultado=auxiliar;
-	 retorno=0;
- }
+			 descuento= (precio*DESCUENTO_TC)/100;
+			 auxiliar= precio - descuento;
+			 *resultado=auxiliar;
+			 retorno=0;
+		 }
 
- return retorno;
+	 return retorno;
 
 }
 
 int Calcular_PagoCredito(float* resultado, int precio){
 
-	int retorno;
-	double interes;
-	float auxiliar;
-	retorno=-1;
+		int retorno;
+		double interes;
+		float auxiliar;
+		retorno=-1;
 
-	 if(resultado!= NULL && precio>0){
+		 if(resultado!= NULL && precio>0){
 
-		 interes= (precio*INTERES_TC)/100;
-		 auxiliar= precio + interes;
-		 *resultado=auxiliar;
-		 retorno=0;
-	 }
+			 interes= (precio*INTERES_TC)/100;
+			 auxiliar= precio + interes;
+			 *resultado=auxiliar;
+			 retorno=0;
+		 }
 
 	 return retorno;
 
@@ -49,21 +49,21 @@ int Calcular_PagoCredito(float* resultado, int precio){
 float Calcular_PagoBitcoin(int precio){
 
 
-	float auxbitcoin;
+		float auxbitcoin;
 
-	 	 auxbitcoin= precio/4606954.55;
+			auxbitcoin= precio/4606954.55;
 
-	return auxbitcoin;
+		return auxbitcoin;
 
 }
 
 float  Calcular_PrecioUnitario(int kilometros,int precio){
 
-	float precioUnitario;
+		float precioUnitario;
 
-	if(precio> 0){
-		precioUnitario=(float)precio/kilometros;
-	}
+		if(precio> 0){
+			precioUnitario=(float)precio/kilometros;
+		}
 
 	return precioUnitario;
 }
@@ -71,18 +71,17 @@ float  Calcular_PrecioUnitario(int kilometros,int precio){
 float Calcular_DiferenciaDePrecio(int precioUno, int precioDos){
 
 	int resultado;
+	resultado=0;
 
-	if(precioUno> precioDos){
+		if(precioUno> precioDos){
 
-		resultado=precioUno- precioDos;
-	}
-	else if(precioDos> precioUno){
+			resultado=precioUno- precioDos;
+		}
+		else if((precioDos> precioUno)){
 
-		resultado= precioDos- precioUno;
-	}
-	else if(precioUno== precioDos){
-		 resultado=0;
-	}
+			resultado= precioDos- precioUno;
+		}
+
    return resultado;
 
 }
