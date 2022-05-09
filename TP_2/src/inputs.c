@@ -15,7 +15,6 @@ int pedirEntero(int* pNumero){
 
 	fflush(stdin);
 	scanf("%s", cadenaAuxiliar);
-	//printf("%s valor de cadena  en pedir entero \n ", cadenaAuxiliar);
 
 	if(esNumerica(cadenaAuxiliar)==1){
 		*pNumero= atoi(cadenaAuxiliar);
@@ -42,7 +41,6 @@ int esNumerica(char cadena[]){
 	}
 
 	for( ; i < longitud ; i++){
-		//printf("valor de cadena en for: %c \n ", cadena[i]);
 
 		if(cadena[i]>'9'|| cadena[i]< '0'){
 
@@ -69,7 +67,6 @@ int esFlotante(char cadena[]){
 	}
 
 	for( ; i < longitud ; i++){
-		printf("valor de cadena en for: %c \n ", cadena[i]);
 
 		if((cadena[i]>'0'|| cadena[i]< '9') && cadena[i] == '.'){
 
@@ -77,7 +74,6 @@ int esFlotante(char cadena[]){
 				break;
 			}
 		}
-	printf("%d retorno en es flotante  \n ",retorno);
 	return retorno;
 }
 
@@ -90,15 +86,13 @@ int pedirFlotante(float* pNumero){
 
 	fflush(stdin);
 	scanf("%s", cadenaAuxiliar);
-	printf("%s valor de cadena  en pedir flotanten \n ", cadenaAuxiliar);
 
 	if(esFlotante(cadenaAuxiliar)==1){
 		*pNumero= atof(cadenaAuxiliar);
 		retorno= 0;
 
 	}
-	printf("%d retorno en pedir float  \n ",retorno);
-    return retorno;
+  return retorno;
 }
 
 int pedirNumero(int* pNumero, char mensaje[], char error[], int minimo, int maximo, int reintentos){
@@ -124,8 +118,7 @@ int pedirNumero(int* pNumero, char mensaje[], char error[], int minimo, int maxi
 
 		}while(reintentos > 0);
 	}
-	printf("%d retorno en pedir numero  \n ",retorno);
-	return retorno;
+return retorno;
 }
 
 int pedirPrecio(float* pPrecio, char mensaje[], char error[], float minimo, float maximo, int reintentos){
@@ -192,10 +185,8 @@ int pedirCaracteres(char cadena[],char mensaje[], int len){
 		if(fgets(cadena,len,stdin) && sonLetras(cadena)== 1){
 
 				cadena[strlen(cadena)-1] = '\0';
-				printf("cadena en if caracteres %s \n ",cadena);
 				retorno=0;
 			}
 	}
-	printf("retorno en pedir caracteres %d \n ",retorno);
-	return retorno;
+  return retorno;
 }

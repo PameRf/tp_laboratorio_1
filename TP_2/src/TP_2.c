@@ -12,11 +12,23 @@
 #include <stdlib.h>
 #include <string.h>
 #include "inputs.h"
+#include "ArrayPassenger.h"
+#define CANTIDAD_PASAJEROS 4
+
+
 int main(void) {
 
 	setbuf(stdout,NULL);
 
 	int opcionMenu;
+	int validarMenu;
+	//int flagMenu;
+	Passenger pasajeros[CANTIDAD_PASAJEROS];
+	int validarRetorno;
+
+	validarRetorno=initPassengers(pasajeros, CANTIDAD_PASAJEROS);
+
+	printf("Se pudo inicializar %d\n",validarRetorno);
 
 	do{
 	printf("1. ALTAS: Se debe permitir ingresar un pasajero calculando automáticamente el \n"
@@ -31,20 +43,21 @@ int main(void) {
             "3. Listado de los pasajeros por Código de vuelo y estados de vuelos ‘ACTIVO’\n");
 	printf("5. Salir\n");
 
-	printf("Ingrese una opcion: ");
-	scanf("%d",&opcionMenu);
+	validarMenu= pedirNumero(&opcionMenu, "Ingrese una opcion \n", "Error! Ingrese una opcion valida: \n",1, 5, 2);
 
-	switch(opcionMenu){
-		case 1: printf("Esta en altas\n");
-			break;
-		case 2: printf("Esta en modificar\n");
-			break;
-		case 3: printf("Esta en bajas\n");
-			break;
-		case 4: printf("Esta en informar\n");
-			break;
-		case 5: printf("salir");
-			break;
+	if(validarMenu== 0){
+		switch(opcionMenu){
+			case 1: printf("Esta en altas\n");
+				break;
+			case 2: printf("Esta en modificar\n");
+				break;
+			case 3: printf("Esta en bajas\n");
+				break;
+			case 4: printf("Esta en informar\n");
+				break;
+			case 5: printf("salir");
+				break;
+		}
 	}
 
 	}while(opcionMenu != 5);
