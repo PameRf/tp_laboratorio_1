@@ -22,4 +22,5 @@ int pedirPrecio(float* pPrecio, char mensaje[], char error[], float minimo, floa
 int sonLetras(char cadena[]);
 int pedirCaracteres(char cadena[],char mensaje[], int len);
 
+
 #endif /* INPUTS_H_ */

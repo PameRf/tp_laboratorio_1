@@ -30,11 +30,9 @@ int esNumerica(char cadena[]){
 	int retorno;
 	int i;
 	int longitud=strlen(cadena);
-	printf("%d longitud\n",longitud);
-	printf("%s cadena \n",cadena);
+
 	retorno=1;
 	i=0;
-
 
 	if(cadena[0]== '-'){
 		i=1;
@@ -57,8 +55,7 @@ int esFlotante(char cadena[]){
 	int retorno;
 	int i;
 	int longitud=strlen(cadena);
-	printf("%d longitud\n",longitud);
-	printf("%s cadena \n",cadena);
+
 	retorno=1;
 	i=0;
 
@@ -190,3 +187,4 @@ int pedirCaracteres(char cadena[],char mensaje[], int len){
 	}
   return retorno;
 }
+

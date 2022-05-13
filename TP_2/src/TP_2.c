@@ -24,7 +24,13 @@ int main(void) {
 	int validarMenu;
 	//int flagMenu;
 	Passenger pasajeros[CANTIDAD_PASAJEROS];
+	Passenger auxPasajero;
 	int validarRetorno;
+	//int idPasajero;
+	//int index;
+	//int validaPaxCargado;
+
+
 
 	validarRetorno=initPassengers(pasajeros, CANTIDAD_PASAJEROS);
 
@@ -47,11 +53,45 @@ int main(void) {
 
 	if(validarMenu== 0){
 		switch(opcionMenu){
-			case 1: printf("Esta en altas\n");
+			case 1:
+
+				auxPasajero= cargarUnPax();
+				//printPassenger(auxPasajero);
+
+				if(addPassenger(pasajeros, CANTIDAD_PASAJEROS, auxPasajero.id, auxPasajero.name, auxPasajero.lastName,auxPasajero.price, auxPasajero.typePassenger,auxPasajero.flycode)==0){
+
+					printf("Se pudo cargar el pasajero \n");
+			    }
+				else{
+
+					printf("No se pudo cargar el pasajero");
+
+				}
+
+					//	auxPasajero.price, auxPasajero.typePassenger,auxPasajero.flycode);
 				break;
-			case 2: printf("Esta en modificar\n");
+
+				/*if(validaPaxCargado != 5){
+
+					printf("Se pudo cargar el pasajero \n");
+					printPassenger(auxPasajero);
+				}
+				else{
+
+					printf("No se pudo cargar el pasajero");
+
+				}*/
+				//auxpasa(funcion un cagar un pasajero)
+				// carga la lista addpassager
+		//	printf("Esta en altas %d\n", idPasajero);
+
+			case 2:
+
+				//printf("el indice encontrado vacio es %d\n",index);
 				break;
-			case 3: printf("Esta en bajas\n");
+			case 3:
+
+				//printf("Su codigo de vuelo es %s: \n",flycode);
 				break;
 			case 4: printf("Esta en informar\n");
 				break;

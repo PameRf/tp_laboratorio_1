@@ -11,6 +11,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "inputs.h"
+#define ECONOMY 1
+#define PREMIUM ECONOMY 2
+#define BUSINESS 3
 
 typedef struct {
 	int id;
@@ -23,5 +26,12 @@ typedef struct {
 } Passenger;
 
 int initPassengers(Passenger* list, int len);
+int generarId();
+int buscarEspacioLibre(Passenger* list, int len);
+Passenger cargarUnPax();
+int addPassenger(Passenger* list, int len, int id, char name[],char lastName[],float price,int typePassenger, char flycode[]);
+int printPassenger(Passenger unPasajero);
+int pedirFlyCode(char cadena[], char mensaje[], int len);
+int printPassenger(Passenger unPasajero);
 
 #endif /* ARRAYPASSENGER_H_ */
