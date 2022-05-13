@@ -123,7 +123,7 @@ Passenger cargarUnPax(){
 			printf("sepudo cargar");
       }
 
-	printPassenger(unPasajero);
+	//printPassenger(unPasajero);
 return unPasajero;
 
 }
@@ -167,7 +167,7 @@ int addPassenger(Passenger list[], int len, int id, char name[],char lastName[],
 
 			list[espacioLibre].isEmpty = 0;
 
-			printPassenger(list[espacioLibre]);
+			 mostrarUnPassenger(list[espacioLibre]);
 
 			retorno = 0;
 			printf("valor de retorno en if %d \n", retorno);
@@ -177,7 +177,7 @@ int addPassenger(Passenger list[], int len, int id, char name[],char lastName[],
 	return retorno;
 }
 
-int printPassenger(Passenger unPasajero){
+int mostrarUnPassenger(Passenger unPasajero){
 
 
 	if (unPasajero.isEmpty == 0){
@@ -190,4 +190,37 @@ int printPassenger(Passenger unPasajero){
 		//todo lo que quiero mostrar
 	}
 return 0;
+}
+
+int printPassenger(Passenger list[], int length){
+
+	int retorno;
+	retorno=-1;
+
+	if (list != NULL && length > 0){
+
+
+		for(int i = 0; i < length; i++){
+
+			mostrarUnPassenger(list[i]);
+		}
+		retorno=0;
+
+	}
+
+return retorno;
+}
+
+int findPassengerById(Passenger* list, int len,int id){
+	int retorno = -1;
+		if (list != NULL && len > 0 && id > 0) {
+
+			for (int i = 0; i < len; i++) {
+				if (list[i].id == id && list[i].isEmpty == 0) {
+					retorno = i;
+					break;
+				}
+			}
+		}
+	return retorno;
 }

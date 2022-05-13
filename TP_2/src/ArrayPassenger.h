@@ -30,8 +30,9 @@ int generarId();
 int buscarEspacioLibre(Passenger* list, int len);
 Passenger cargarUnPax();
 int addPassenger(Passenger* list, int len, int id, char name[],char lastName[],float price,int typePassenger, char flycode[]);
-int printPassenger(Passenger unPasajero);
 int pedirFlyCode(char cadena[], char mensaje[], int len);
-int printPassenger(Passenger unPasajero);
+int mostrarUnPassenger(Passenger unPasajero);
+int printPassenger(Passenger list[], int length);
+int findPassengerById(Passenger* list, int len,int id);
 
 #endif /* ARRAYPASSENGER_H_ */
