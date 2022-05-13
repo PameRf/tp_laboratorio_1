@@ -21,6 +21,6 @@ int pedirNumero(int* pNumero, char mensaje[], char error[], int minimo, int maxi
 int pedirPrecio(float* pPrecio, char mensaje[], char error[], float minimo, float maximo, int reintentos);
 int sonLetras(char cadena[]);
 int pedirCaracteres(char cadena[],char mensaje[], int len);
-
+void mostrarSubMenu();
 
 #endif /* INPUTS_H_ */

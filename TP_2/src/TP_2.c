@@ -23,14 +23,14 @@ int main(void) {
 	int opcionMenu;
 	int validarMenu;
 	//int flagMenu;
-	Passenger pasajeros[CANTIDAD_PASAJEROS]={{1006, "Juan", "Carlos", 12000,"ar29",1, 0} ,
+	Passenger pasajeros[CANTIDAD_PASAJEROS];/*={{1006, "Juan", "Carlos", 12000,"ar29",1, 0} ,
             {1002, "Roberto", "Gomez", 13000,"ar29", 0},
 			{1003, "Ezequiel", "Jimenez", 150345, "ar45", 0},
             {1004, "Martin", "Hernandez",24000, "la23", 0},
             {1005, "Jose", "Perez",356786, "la69", 0},
-            {1001, "Carla", "Luque", 23453, "ba23", 0}};
+            {1001, "Carla", "Luque", 23453, "ba23", 0}};*/
 	Passenger auxPasajero;
-	//int validarRetorno;
+	int validarRetorno;
 	//char respuesta='s';
 	int idPasajero;
 	//int index;
@@ -38,9 +38,9 @@ int main(void) {
 
 
 
-	//validarRetorno=initPassengers(pasajeros, CANTIDAD_PASAJEROS);
+	validarRetorno=initPassengers(pasajeros, CANTIDAD_PASAJEROS);
 
-	//printf("Se pudo inicializar %d\n",validarRetorno);
+	printf("Se pudo inicializar %d\n",validarRetorno);
 
 	do{
 	printf("1. ALTAS: Se debe permitir ingresar un pasajero calculando automáticamente el \n"
@@ -93,10 +93,18 @@ int main(void) {
 
 			case 2:
 
-				idPasajero=findPassengerById(pasajeros, CANTIDAD_PASAJEROS,1003);
-				printf("el id esta en el indice: %d", idPasajero);
+				printPassenger(pasajeros, CANTIDAD_PASAJEROS);
 
-				//printPassenger(pasajeros, CANTIDAD_PASAJEROS);
+				idPasajero= findPassengerById(pasajeros, CANTIDAD_PASAJEROS, 1002);
+				if(idPasajero !=-1){
+				printf("el id esta en el indice: %d\n", idPasajero);
+				}
+				else{
+
+					printf("el id no se encontro");
+
+				}
+
 
 				//printf("el indice encontrado vacio es %d\n",index);
 				break;

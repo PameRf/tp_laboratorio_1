@@ -188,3 +188,14 @@ int pedirCaracteres(char cadena[],char mensaje[], int len){
   return retorno;
 }
 
+void mostrarSubMenu(){
+
+	printf("Elija la opcion que desea mofificar: \n"
+			"1. Nombre \n"
+			"2. Apellido \n"
+			"3. Precio \n"
+			"4. Tipo de pasajero\n"
+			"5. Codigo de vuelo \n"	);
+
+	}
+

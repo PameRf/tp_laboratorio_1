@@ -37,6 +37,7 @@ int buscarEspacioLibre(Passenger* list, int len){
 
 		if(list != NULL && len > 0){
 			for(int i = 0; i < len; i++){
+
 				if(list[i].isEmpty == 1){
 					retorno = i;
 					break;
@@ -120,7 +121,8 @@ Passenger cargarUnPax(){
 		if(flagCarga== 5){
 
 			//printPassenger(unPasajero);
-			printf("sepudo cargar");
+			unPasajero.isEmpty= 0;
+			printf("sepudo cargar valor is empty en aux %d",unPasajero.isEmpty);
       }
 
 	//printPassenger(unPasajero);
@@ -145,13 +147,15 @@ int addPassenger(Passenger list[], int len, int id, char name[],char lastName[],
 		printf("entro al primer if \n");
 
 	espacioLibre= buscarEspacioLibre(list, len);
-	printf("espacio libre %d \n", espacioLibre);
+	//printf("espacio libre %d \n", espacioLibre);
 
 		if (espacioLibre != -1) {
 
-			printf("espacio libre %d", espacioLibre);
+		//	printf("espacio libre %d", espacioLibre);
 
 			printf("entro al segundo if \n");
+
+			list[espacioLibre].isEmpty = 0;
 
 			list[espacioLibre].id= id;
 
@@ -165,15 +169,16 @@ int addPassenger(Passenger list[], int len, int id, char name[],char lastName[],
 
 			list[espacioLibre].typePassenger= typePassenger;
 
-			list[espacioLibre].isEmpty = 0;
+
+			printf("valor de isEmpty en add en if %d \n", list[espacioLibre].isEmpty);
 
 			 mostrarUnPassenger(list[espacioLibre]);
 
 			retorno = 0;
-			printf("valor de retorno en if %d \n", retorno);
+
 		}
 	}
-	printf("valor de retorno fuera if %d \n", retorno);
+
 	return retorno;
 }
 
@@ -208,19 +213,24 @@ int printPassenger(Passenger list[], int length){
 
 	}
 
-return retorno;
+ return retorno;
 }
 
 int findPassengerById(Passenger* list, int len,int id){
-	int retorno = -1;
-		if (list != NULL && len > 0 && id > 0) {
 
-			for (int i = 0; i < len; i++) {
-				if (list[i].id == id && list[i].isEmpty == 0) {
-					retorno = i;
-					break;
-				}
+	int retorno = -1;
+
+	if (list != NULL && len > 0 && id > 0) {
+
+		for (int i = 0; i < len; i++) {
+			if (list[i].id == id && list[i].isEmpty == 0){
+
+			  retorno = i;
+			  printf("Valor de i en if %d", i);
+			 // printf("valor de retorno en if de find paseng by id %d \n", list[i].isEmpty);
+			 return retorno;
 			}
 		}
+	}
 	return retorno;
 }
