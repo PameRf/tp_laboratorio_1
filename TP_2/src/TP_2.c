@@ -23,16 +23,15 @@ int main(void) {
 	int opcionMenu;
 	int validarMenu;
 	//int flagMenu;
-	Passenger pasajeros[CANTIDAD_PASAJEROS]={{1001, "Juan", "Carlos", 12000,"ar29",1, 0} ,
-            {1002, "Roberto", "Gomez", 13000,"ar29",2, 0},
-			{1003, "Ezequiel", "Jimenez", 150345, "ar45",3, 0},
-            {1004, "Martin", "Hernandez",24000, "la23",1, 0},
-            {1005, "Jose", "Perez",356786, "la69",2, 0},
-            {1006, "Carla", "Luque", 23453, "ba23",1, 0}};
+	Passenger pasajeros[CANTIDAD_PASAJEROS]={{1001, "Juan", "Bustamante", 12000,"ar29",1,4, 0} ,
+            {1002, "Roberto", "Gomez", 13000,"ars33",2,4, 0},
+			{1003, "Ezequiel", "Jimenez", 150345, "ar45",3,5, 0},
+            {1004, "Martin", "Gomez",24000, "la23",3,6, 0},
+            {1005, "Jose", "Perez",356786, "la69",2,4, 0},
+            {1006, "Carla", "Luque", 23453, "ar29",1,5, 0}};
 
 	Passenger auxPasajero;
 	//int validarRetorno;
-	//char respuesta='s';
 	//int idPasajero;
 	//int index;
 	//int validaPaxCargado;
@@ -110,7 +109,19 @@ int main(void) {
 				}
 				//printf("Su codigo de vuelo es %s: \n",flycode);
 				break;
-			case 4: printf("Esta en informar\n");
+			case 4:
+				/*printPassenger(pasajeros, CANTIDAD_PASAJEROS);
+				printf("\n\n");
+				sortPassengers(pasajeros, CANTIDAD_PASAJEROS, 0);
+				printf("\n\n");
+				printPassenger(pasajeros, CANTIDAD_PASAJEROS);
+				printf("\n\n");*/
+				//calcularPrecioPromedio(pasajeros, CANTIDAD_PASAJEROS);
+				printPassenger(pasajeros, CANTIDAD_PASAJEROS);
+				printf("\n\n");
+				sortPassengersByCode(pasajeros, CANTIDAD_PASAJEROS, 0);
+				printPassenger(pasajeros, CANTIDAD_PASAJEROS);
+				printf("\n\n");
 				break;
 			case 5: printf("salir");
 				break;
@@ -121,3 +132,4 @@ int main(void) {
 
 	return EXIT_SUCCESS;
 }
+

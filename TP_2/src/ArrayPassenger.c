@@ -192,6 +192,7 @@ int mostrarUnPassenger(Passenger unPasajero){
 		printf(" precio %f \n", unPasajero.price);
 		printf(" codigo vuelo %s \n", unPasajero.flycode);
 		printf(" tipo de pasajero %d \n", unPasajero.typePassenger);
+		printf(" Estado de vuelo %d \n", unPasajero.statusFlight);
 		//todo lo que quiero mostrar
 	}
 return 0;
@@ -215,6 +216,7 @@ int printPassenger(Passenger list[], int length){
 
  return retorno;
 }
+
 
 int findPassengerById(Passenger* list, int len,int id){
 
@@ -335,3 +337,180 @@ int removePassenger(Passenger* list, int len, int id){
 	return retorno;
 }
 
+int sortPassengers(Passenger* list, int len, int order){
+
+	int retorno = -1;
+	int i;
+	Passenger paxAux;
+	int ordenado;
+
+	if (list != NULL && len > 0) {
+		do {
+			ordenado = 1;
+			len--;
+			for (i = 0; i < len; i++) {
+				if (stricmp(list[i].lastName, list[i + 1].lastName)  < order){
+					paxAux = list[i];
+					list[i] = list[i + 1];
+					list[i + 1] = paxAux;
+					ordenado = 0;
+				}
+				else if((list[i].lastName == list[i].lastName)){
+
+					//printf("entra al if de apellidos iguales");
+					ordenarPassengersPorTipo( list,  len);
+					ordenado = 0;
+				}
+
+			}
+		} while (ordenado == 0);
+		retorno = 0;
+	}
+	return retorno;
+}
+
+
+int ordenarPassengersPorTipo(Passenger* list, int len){
+
+	int retorno = -1;
+	int i;
+	Passenger paxAux;
+	int ordenado;
+
+	if (list != NULL && len > 0) {
+		do {
+			ordenado = 1;
+			len--;
+			for (i = 0; i < len; i++) {
+				if (list[i].typePassenger < list[i + 1].typePassenger){
+
+					//printf("entra al if de apellidos iguales");
+					paxAux = list[i];
+					list[i] = list[i + 1];
+					list[i + 1] = paxAux;
+					ordenado = 0;
+				}
+
+			}
+		} while (ordenado == 0);
+		retorno = 0;
+	}
+	return retorno;
+}
+
+int calcularPrecioPromedio(Passenger* list, int len){
+
+	 int retorno;
+	 float promedio;
+	 float acumuladorPrecio;
+	 int contadorPax;
+	 int paxsMayorpromedio;
+
+	 retorno=-1;
+	 acumuladorPrecio=0;
+	 contadorPax=0;
+
+	 if (list != NULL && len > 0) {
+
+		for (int i = 0; i < len; i++) {
+			if ( list[i].isEmpty == 0){
+
+			acumuladorPrecio+= list[i].price;
+			contadorPax++;
+
+			}
+	   }
+		printf("El precio total de todos los pasajes es %.2f \n", acumuladorPrecio);
+
+		if (contadorPax !=0){
+
+			promedio =  acumuladorPrecio / contadorPax;
+			printf("El promedio  de todos los pasajes es %.2f\n", promedio);
+			paxsMayorpromedio= buscarPaxSuperanPromedio(list, len, promedio);
+			printf("La cantidad de pasajeros con precios que superan el promedio son: %.d\n", paxsMayorpromedio);
+
+		}
+
+	 	retorno=0;
+	 }
+ return retorno;
+}
+
+int buscarPaxSuperanPromedio(Passenger* list, int len, float promedio){
+
+	int retorno;
+	int contadorPaxMayor;
+	retorno=-1;
+	contadorPaxMayor=0;
+	if (list != NULL && len > 0) {
+
+		for (int i = 0; i < len; i++) {
+			if (list[i].isEmpty == 0 && list[i].price > promedio){
+
+				contadorPaxMayor++;
+
+			}
+			retorno=contadorPaxMayor;
+	   }
+	}
+ return retorno;
+}
+
+int sortPassengersByCode(Passenger* list, int len, int order){
+
+	int retorno = -1;
+		int i;
+		Passenger paxAux;
+		int ordenado;
+
+		if (list != NULL && len > 0) {
+			do {
+				ordenado = 1;
+				len--;
+				for (i = 0; i < len; i++) {
+					if (stricmp(list[i].flycode, list[i + 1].flycode)  < order){
+						paxAux = list[i];
+						list[i] = list[i + 1];
+						list[i + 1] = paxAux;
+						ordenado = 0;
+					}
+					else if(list[i].flycode == list[i].flycode){
+
+						ordenarPassengersPorStatusFly(list,  len);
+						ordenado = 0;
+					}
+
+				}
+			} while (ordenado == 0);
+			retorno = 0;
+		}
+		return retorno;
+}
+
+int ordenarPassengersPorStatusFly(Passenger* list, int len){
+
+	int retorno = -1;
+		int i;
+		Passenger paxAux;
+		int ordenado;
+
+		if (list != NULL && len > 0) {
+			do {
+				ordenado = 1;
+				len--;
+				for (i = 0; i < len; i++) {
+					if (list[i].statusFlight < list[i + 1].statusFlight){
+
+						//printf("entra al if de apellidos iguales");
+						paxAux = list[i];
+						list[i] = list[i + 1];
+						list[i + 1] = paxAux;
+						ordenado = 0;
+					}
+
+				}
+			} while (ordenado == 0);
+			retorno = 0;
+		}
+	return retorno;
+}
