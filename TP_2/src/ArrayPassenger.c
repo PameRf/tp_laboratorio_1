@@ -70,11 +70,6 @@ Passenger cargarUnPax(){
 
 	Passenger unPasajero;
 
-	/*char nombreAux[51];
-	char apellidoAux[51];
-	float precioAux;
-	char codigoAux[10];
-	int tipoAux;*/
 	int flagCarga;
 	flagCarga=0;
 
@@ -117,12 +112,18 @@ Passenger cargarUnPax(){
 		else{
 			printf("Error no se pudo cargar tipo de pax");
 		}
+		if(pedirNumero(&unPasajero.statusFlight, "Ingrese estado de vuelo 4 (Activo), 5 (Reprogramado) y 6 (Cancelado) \n", "Error! Estado de vuelos invalido", 4, 6,2)== 0 && flagCarga==5){
 
-		if(flagCarga== 5){
+			flagCarga=6;
+		}
+		else{
+			printf("Error no se pudo cargar estado de vuelo");
+		}
 
-			//printPassenger(unPasajero);
+		if(flagCarga== 6){
+
 			unPasajero.isEmpty= 0;
-			printf("sepudo cargar valor is empty en aux %d",unPasajero.isEmpty);
+			//printf("sepudo cargar valor is empty en aux %d",unPasajero.isEmpty);
       }
 
 	//printPassenger(unPasajero);
@@ -131,20 +132,16 @@ return unPasajero;
 }
 
 
-
-
-int addPassenger(Passenger list[], int len, int id, char name[],char lastName[],float price,int typePassenger, char flycode[]){
+int addPassenger(Passenger list[], int len, int id, char name[],char lastName[],float price,int typePassenger, char flycode[],int statusFlight){
 
 	int retorno;
 	int espacioLibre;
 
-	printf("entro a la funcion \n");
 
 	retorno = -1;
 
 	if (list != NULL && name != NULL && lastName != NULL && flycode!= NULL && len > 0){
 
-		printf("entro al primer if \n");
 
 	espacioLibre= buscarEspacioLibre(list, len);
 	//printf("espacio libre %d \n", espacioLibre);
@@ -153,7 +150,6 @@ int addPassenger(Passenger list[], int len, int id, char name[],char lastName[],
 
 		//	printf("espacio libre %d", espacioLibre);
 
-			printf("entro al segundo if \n");
 
 			list[espacioLibre].isEmpty = 0;
 
@@ -169,13 +165,14 @@ int addPassenger(Passenger list[], int len, int id, char name[],char lastName[],
 
 			list[espacioLibre].typePassenger= typePassenger;
 
+			list[espacioLibre].statusFlight= statusFlight;
 
-			printf("valor de isEmpty en add en if %d \n", list[espacioLibre].isEmpty);
+
+			//printf("valor de isEmpty en add en if %d \n", list[espacioLibre].isEmpty);
 
 			 mostrarUnPassenger(list[espacioLibre]);
 
 			retorno = 0;
-
 		}
 	}
 
@@ -184,16 +181,38 @@ int addPassenger(Passenger list[], int len, int id, char name[],char lastName[],
 
 int mostrarUnPassenger(Passenger unPasajero){
 
+	char auxiliarTipo[40];
+	char auxiliarStatusFly[40];
 
 	if (unPasajero.isEmpty == 0){
-		printf(" ID de pasajero %d \n", unPasajero.id);
-		printf(" nombre de pasajero %s \n", unPasajero.name);
-		printf(" apellido de pasajero %s \n", unPasajero.lastName);
-		printf(" precio %f \n", unPasajero.price);
-		printf(" codigo vuelo %s \n", unPasajero.flycode);
-		printf(" tipo de pasajero %d \n", unPasajero.typePassenger);
-		printf(" Estado de vuelo %d \n", unPasajero.statusFlight);
-		//todo lo que quiero mostrar
+
+		switch(unPasajero.typePassenger){
+
+			case ECONOMY:
+			strcpy(auxiliarTipo, "ECONOMY");
+			break;
+			case PREMIUM_ECONOMY:
+			strcpy (auxiliarTipo, "PREMIUM_ECONOMY");
+			break;
+			case BUSINESS:
+			strcpy(auxiliarTipo, "BUSINESS");
+			break;
+		}
+		switch(unPasajero.statusFlight){
+
+			case ACTIVO:
+			strcpy(auxiliarStatusFly, "ACTIVO");
+			break;
+			case REPROGRAMADO:
+			strcpy (auxiliarStatusFly, "REPROGRAMADO");
+			break;
+			case CANCELADO:
+			strcpy(auxiliarStatusFly, "CANCELADO");
+			break;
+		}
+
+		printf("%-4d %-10s %-15s %-19.2f %-12s %-19s %-10s \n", unPasajero.id,  unPasajero.name, unPasajero.lastName,unPasajero.price, unPasajero.flycode, auxiliarTipo, auxiliarStatusFly);
+
 	}
 return 0;
 }
@@ -205,15 +224,12 @@ int printPassenger(Passenger list[], int length){
 
 	if (list != NULL && length > 0){
 
-
 		for(int i = 0; i < length; i++){
 
 			mostrarUnPassenger(list[i]);
 		}
 		retorno=0;
-
 	}
-
  return retorno;
 }
 
@@ -229,7 +245,7 @@ int findPassengerById(Passenger* list, int len,int id){
 			if (list[i].id == id && list[i].isEmpty == 0){
 
 			  retorno = i;
-			  printf("Valor de i en if %d", i);
+			 // printf("Valor de i en if %d", i);
 			 // printf("valor de retorno en if de find paseng by id %d \n", list[i].isEmpty);
 			 return retorno;
 			}
@@ -271,7 +287,7 @@ int modificarPasajero(Passenger* list, int len,int id){
     			 }
     		 break;
     		 case 2:
-    			if(pedirCaracteres(list[indice].lastName,"Ingrese el nuevo apellido apellido: \n",51)== 0){
+    			if(pedirCaracteres(list[indice].lastName,"Ingrese el nuevo apellido: \n",51)== 0){
 
     				printf("El nuevo apellido fue cargado correctamente \n");
 				}
@@ -361,7 +377,6 @@ int sortPassengers(Passenger* list, int len, int order){
 					ordenarPassengersPorTipo( list,  len);
 					ordenado = 0;
 				}
-
 			}
 		} while (ordenado == 0);
 		retorno = 0;
@@ -390,7 +405,6 @@ int ordenarPassengersPorTipo(Passenger* list, int len){
 					list[i + 1] = paxAux;
 					ordenado = 0;
 				}
-
 			}
 		} while (ordenado == 0);
 		retorno = 0;
@@ -512,5 +526,25 @@ int ordenarPassengersPorStatusFly(Passenger* list, int len){
 			} while (ordenado == 0);
 			retorno = 0;
 		}
+	return retorno;
+}
+
+int cargaForzadaDePax(Passenger* list){
+
+	int retorno;
+
+	Passenger paxsAuxiliares[6]={{1001, "Juan", "Bustamante", 12000,"ar29",1,4, 0} ,
+	            {1002, "Roberto", "Gomez", 13000,"ars33",2,4, 0},
+				{1003, "Ezequiel", "Freire", 150345, "ar45",3,5, 0},
+	            {1004, "Dario", "Gomez",24000, "la23",3,6, 0},
+	            {1005, "Jose", "Romano",356786, "la69",2,4, 0},
+	            {1006, "Laura", "Torres", 23453, "ar29",1,5, 0}};
+	retorno=-1;
+
+	for(int i=0; i< 6; i++){
+
+		list[i]= paxsAuxiliares[i];
+		retorno=0;
+	}
 	return retorno;
 }

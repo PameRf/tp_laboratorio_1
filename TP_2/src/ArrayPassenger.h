@@ -12,7 +12,7 @@
 #include <string.h>
 #include "inputs.h"
 #define ECONOMY 1
-#define PREMIUM ECONOMY 2
+#define PREMIUM_ECONOMY 2
 #define BUSINESS 3
 #define ACTIVO 4
 #define REPROGRAMADO 5
@@ -34,7 +34,7 @@ int initPassengers(Passenger* list, int len);
 int generarId();
 int buscarEspacioLibre(Passenger* list, int len);
 Passenger cargarUnPax();
-int addPassenger(Passenger* list, int len, int id, char name[],char lastName[],float price,int typePassenger, char flycode[]);
+int addPassenger(Passenger* list, int len, int id, char name[],char lastName[],float price,int typePassenger, char flycode[], int statusFlight);
 int pedirFlyCode(char cadena[], char mensaje[], int len);
 int mostrarUnPassenger(Passenger unPasajero);
 int printPassenger(Passenger list[], int length);
@@ -47,4 +47,5 @@ int calcularPrecioPromedio(Passenger* list, int len);
 int buscarPaxSuperanPromedio(Passenger* list, int len, float promedio);
 int sortPassengersByCode(Passenger* list, int len, int order);
 int ordenarPassengersPorStatusFly(Passenger* list, int len);
+int cargaForzadaDePax(Passenger* list);
 #endif /* ARRAYPASSENGER_H_ */

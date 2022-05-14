@@ -13,7 +13,7 @@
 #include <string.h>
 #include "inputs.h"
 #include "ArrayPassenger.h"
-#define CANTIDAD_PASAJEROS 6
+#define CANTIDAD_PASAJEROS 8
 
 
 int main(void) {
@@ -22,25 +22,20 @@ int main(void) {
 
 	int opcionMenu;
 	int validarMenu;
-	//int flagMenu;
-	Passenger pasajeros[CANTIDAD_PASAJEROS]={{1001, "Juan", "Bustamante", 12000,"ar29",1,4, 0} ,
-            {1002, "Roberto", "Gomez", 13000,"ars33",2,4, 0},
-			{1003, "Ezequiel", "Jimenez", 150345, "ar45",3,5, 0},
-            {1004, "Martin", "Gomez",24000, "la23",3,6, 0},
-            {1005, "Jose", "Perez",356786, "la69",2,4, 0},
-            {1006, "Carla", "Luque", 23453, "ar29",1,5, 0}};
+	int flagMenu;
+	Passenger pasajeros[CANTIDAD_PASAJEROS];
 
 	Passenger auxPasajero;
-	//int validarRetorno;
+	int validarRetorno;
 	//int idPasajero;
 	//int index;
 	//int validaPaxCargado;
 
 
 
-	//validarRetorno=initPassengers(pasajeros, CANTIDAD_PASAJEROS);
+	validarRetorno=initPassengers(pasajeros, CANTIDAD_PASAJEROS);
 
-	//printf("Se pudo inicializar %d\n",validarRetorno);
+	printf("Se pudo inicializar %d\n",validarRetorno);
 
 	do{
 	printf("1. ALTAS: Se debe permitir ingresar un pasajero calculando automáticamente el \n"
@@ -53,82 +48,82 @@ int main(void) {
 			"2. Total y promedio de los precios de los pasajes, y cuántos pasajeros superan el precio\n"
 			"promedio.\n"
             "3. Listado de los pasajeros por Código de vuelo y estados de vuelos ‘ACTIVO’\n");
-	printf("5. Salir\n");
+	printf("5. Carga forzada de pasajeros \n");
+	printf("6. Salir\n");
 
-	validarMenu= pedirNumero(&opcionMenu, "Ingrese una opcion \n", "Error! Ingrese una opcion valida: \n",1, 5, 2);
+	validarMenu= pedirNumero(&opcionMenu, "Ingrese una opcion \n", "Error! Ingrese una opcion valida: \n",1, 6, 2);
 
 	if(validarMenu== 0){
 		switch(opcionMenu){
 			case 1:
-
 				auxPasajero= cargarUnPax();
-					//printPassenger(auxPasajero);
-
-					if(addPassenger(pasajeros, CANTIDAD_PASAJEROS, auxPasajero.id, auxPasajero.name, auxPasajero.lastName,auxPasajero.price, auxPasajero.typePassenger,auxPasajero.flycode)==0){
-
-						printf("Se pudo cargar el pasajero \n");
-					}
-					else{
-
-						printf("No se pudo cargar el pasajero");
-
-					}
-
-
-				break;
-
-				/*if(validaPaxCargado != 5){
+				if(addPassenger(pasajeros, CANTIDAD_PASAJEROS, auxPasajero.id, auxPasajero.name, auxPasajero.lastName,auxPasajero.price, auxPasajero.typePassenger,auxPasajero.flycode,auxPasajero.statusFlight)==0){
 
 					printf("Se pudo cargar el pasajero \n");
-					printPassenger(auxPasajero);
+					flagMenu=1;
 				}
 				else{
 
 					printf("No se pudo cargar el pasajero");
-
-				}*/
-				//auxpasa(funcion un cagar un pasajero)
-				// carga la lista addpassager
-		//	printf("Esta en altas %d\n", idPasajero);
-
+				}
+				break;
 			case 2:
 
-				modificarPasajero(pasajeros, CANTIDAD_PASAJEROS, 1003);
-
-
-				//printf("el indice encontrado vacio es %d\n",index);
-				break;
-			case 3:
-				if(removePassenger(pasajeros, CANTIDAD_PASAJEROS, 1005)==0){
-
-					printf("El pasajero pudo darse de baja, nueva lista de pasajeros\n");
-					printPassenger(pasajeros, CANTIDAD_PASAJEROS);
+				if(flagMenu==1 || flagMenu==2){
+				modificarPasajero(pasajeros, CANTIDAD_PASAJEROS, 1001);
 				}
 				else{
-					printf("El pasajero no pudo darse de baja id invalido \n");
+					printf("Primero debe estar cargado algun pasajero\n");
+				}
+				break;
+			case 3:
+				if(flagMenu==1 || flagMenu==2){
+					if(removePassenger(pasajeros, CANTIDAD_PASAJEROS, 1001)==0){
+
+						printf("El pasajero pudo darse de baja, nueva lista de pasajeros\n");
+						printPassenger(pasajeros, CANTIDAD_PASAJEROS);
+					}
+					else{
+						printf("El pasajero no pudo darse de baja id invalido \n");
+					}
+				}
+				else{
+					printf("Primero debe estar cargado algun pasajero\n");
 				}
 				//printf("Su codigo de vuelo es %s: \n",flycode);
 				break;
 			case 4:
-				/*printPassenger(pasajeros, CANTIDAD_PASAJEROS);
-				printf("\n\n");
-				sortPassengers(pasajeros, CANTIDAD_PASAJEROS, 0);
-				printf("\n\n");
-				printPassenger(pasajeros, CANTIDAD_PASAJEROS);
-				printf("\n\n");*/
-				//calcularPrecioPromedio(pasajeros, CANTIDAD_PASAJEROS);
-				printPassenger(pasajeros, CANTIDAD_PASAJEROS);
-				printf("\n\n");
-				sortPassengersByCode(pasajeros, CANTIDAD_PASAJEROS, 0);
-				printPassenger(pasajeros, CANTIDAD_PASAJEROS);
-				printf("\n\n");
+				if(flagMenu==1 || flagMenu==2){
+
+					printPassenger(pasajeros, CANTIDAD_PASAJEROS);
+					printf("\n\n");
+					sortPassengers(pasajeros, CANTIDAD_PASAJEROS, 0);
+					printf("\n\n");
+					printPassenger(pasajeros, CANTIDAD_PASAJEROS);
+					printf("\n\n");
+					calcularPrecioPromedio(pasajeros, CANTIDAD_PASAJEROS);
+					printPassenger(pasajeros, CANTIDAD_PASAJEROS);
+					printf("\n\n");
+					sortPassengersByCode(pasajeros, CANTIDAD_PASAJEROS, 0);
+					printPassenger(pasajeros, CANTIDAD_PASAJEROS);
+					printf("\n\n");
+				}
+				else{
+					printf("Primero debe estar cargado algun pasajero\n");
+				}
 				break;
-			case 5: printf("salir");
+			case 5:
+				cargaForzadaDePax(pasajeros);
+				printPassenger(pasajeros, CANTIDAD_PASAJEROS);
+				flagMenu=2;
+				break;
+			case 6:
+				printf("Gracias por elegir Smart Travel");
 				break;
 		}
 	}
 
-	}while(opcionMenu != 5);
+	}while(opcionMenu != 6);
 
 	return EXIT_SUCCESS;
 }
