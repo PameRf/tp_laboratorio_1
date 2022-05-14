@@ -236,7 +236,7 @@ int findPassengerById(Passenger* list, int len,int id){
 	return retorno;
 }
 
-int modificarAsociado(Passenger* list, int len,int id){
+int modificarPasajero(Passenger* list, int len,int id){
 
 	int retorno;
 	int indice;
@@ -313,3 +313,25 @@ int modificarAsociado(Passenger* list, int len,int id){
 	}
    return retorno;
 }
+
+int removePassenger(Passenger* list, int len, int id){
+
+	int retorno;
+	int indice;
+	retorno = -1;
+
+	if (list != NULL && len > 0 && id > 0) {
+
+		indice = findPassengerById(list, len, id);
+
+		if (indice != -1) {
+
+			mostrarUnPassenger(list[indice]);
+
+			list[indice].isEmpty = 1;
+			retorno = 0;
+		}
+	}
+	return retorno;
+}
+

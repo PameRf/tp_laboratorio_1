@@ -34,6 +34,7 @@ int pedirFlyCode(char cadena[], char mensaje[], int len);
 int mostrarUnPassenger(Passenger unPasajero);
 int printPassenger(Passenger list[], int length);
 int findPassengerById(Passenger* list, int len,int id);
-int modificarAsociado(Passenger* list, int len,int id);
+int modificarPasajero(Passenger* list, int len,int id);
+int removePassenger(Passenger* list, int len, int id);
 
 #endif /* ARRAYPASSENGER_H_ */

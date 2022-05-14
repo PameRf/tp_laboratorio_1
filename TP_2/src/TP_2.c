@@ -94,13 +94,20 @@ int main(void) {
 
 			case 2:
 
-				modificarAsociado(pasajeros, CANTIDAD_PASAJEROS, 1003);
+				modificarPasajero(pasajeros, CANTIDAD_PASAJEROS, 1003);
 
 
 				//printf("el indice encontrado vacio es %d\n",index);
 				break;
 			case 3:
+				if(removePassenger(pasajeros, CANTIDAD_PASAJEROS, 1005)==0){
 
+					printf("El pasajero pudo darse de baja, nueva lista de pasajeros\n");
+					printPassenger(pasajeros, CANTIDAD_PASAJEROS);
+				}
+				else{
+					printf("El pasajero no pudo darse de baja id invalido \n");
+				}
 				//printf("Su codigo de vuelo es %s: \n",flycode);
 				break;
 			case 4: printf("Esta en informar\n");
