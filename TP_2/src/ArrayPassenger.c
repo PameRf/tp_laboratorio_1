@@ -218,7 +218,8 @@ int printPassenger(Passenger list[], int length){
 
 int findPassengerById(Passenger* list, int len,int id){
 
-	int retorno = -1;
+	int retorno;
+	retorno = -1;
 
 	if (list != NULL && len > 0 && id > 0) {
 
@@ -233,4 +234,82 @@ int findPassengerById(Passenger* list, int len,int id){
 		}
 	}
 	return retorno;
+}
+
+int modificarAsociado(Passenger* list, int len,int id){
+
+	int retorno;
+	int indice;
+	int opcion;
+	retorno = -1;
+
+	if (list != NULL && len > 0 && id > 0)
+	{
+		indice = findPassengerById(list, len, id);
+
+    	if (indice != -1){
+
+    		 mostrarUnPassenger(list[indice]);
+
+    		 mostrarSubMenu();
+
+    		 pedirNumero(&opcion, "Ingrese la opcion que desea modificar\n", "Error! la opcion ingresada es incorrecta \n",1, 5, 2);
+
+    		 switch(opcion){
+
+    		 case 1:
+    			 if(pedirCaracteres(list[indice].name,"Ingrese el nuevo nombre: \n",51)== 0){
+
+    				 printf("El nuevo nombre fue cargado correctamente \n");
+
+    			 }
+    			 else{
+
+    				 printf("Error! no se pudo cargar nombre invalido \n");
+    			 }
+    		 break;
+    		 case 2:
+    			if(pedirCaracteres(list[indice].lastName,"Ingrese el nuevo apellido apellido: \n",51)== 0){
+
+    				printf("El nuevo apellido fue cargado correctamente \n");
+				}
+				else{
+					printf("Error! no se pudo cargar apellido invalido");
+				}
+    		 break;
+    		 case 3:
+    			if(pedirPrecio(&list[indice].price,"Ingrese el nuevo precio del vuelo: \n", "Error! el precio es incorrecto: \n", 9000, 4700000, 2)== 0){
+
+    				printf("El nuevo precio fue cargado correctamente \n");
+				}
+				else{
+					printf("Error! no se pudo cargar Precio");
+				}
+    		 break;
+    		 case 4:
+    			if(pedirNumero(&list[indice].typePassenger, "Ingrese nuevo tipo de pasajero 1 (Economy), 2 (Premium Economy) y 3 (Business) \n", "Error! Tipo de pasajero invalido", 1, 3,2)== 0){
+
+					printf("El nuevo tipo de pasajero fue cargado correctamente");
+				}
+				else{
+					printf("Error no se pudo cargar tipo de pasajero");
+				}
+    		 break;
+    		 case 5:
+    			if(pedirFlyCode(list[indice].flycode, "Ingrese su codigo de vuelo: \n", 10)== 0){
+
+    				printf("El nuevo codigo de vuelo fue cargado correctamente");
+				}
+				else{
+					printf("Error no se pudo cargar el codigo de vuelo");
+				}
+    		 break;
+    		 }
+
+    		 mostrarUnPassenger(list[indice]);
+
+			retorno = 0;
+	    }
+	}
+   return retorno;
 }
