@@ -387,10 +387,11 @@ int sortPassengers(Passenger* list, int len, int order){
 
 int ordenarPassengersPorTipo(Passenger* list, int len){
 
-	int retorno = -1;
+	int retorno;
 	int i;
 	Passenger paxAux;
 	int ordenado;
+	retorno = -1;
 
 	if (list != NULL && len > 0) {
 		do {

@@ -7,6 +7,30 @@
 
 #include "inputs.h"
 
+int myGets(char cadena[], int len){
+	int retorno;
+	char cadenaAux[5070];
+	retorno=-1;
+
+	if(cadena != NULL && len > 0)
+	{
+		fflush(stdin);
+
+		if(fgets(cadenaAux,sizeof(cadenaAux),stdin) != NULL)
+		{
+			if(cadenaAux[strnlen(cadenaAux,sizeof(cadenaAux))-1] == '\n'){
+
+			 cadenaAux[strlen(cadenaAux)-1] = '\0';
+			 strncpy(cadena,cadenaAux,len);
+			 retorno=0;
+			 }
+		}
+	}
+	return retorno;
+}
+
+
+
 int pedirEntero(int* pNumero){
 
 	int retorno;
@@ -14,14 +38,12 @@ int pedirEntero(int* pNumero){
 	retorno= -1;
 
 	fflush(stdin);
-	scanf("%s", cadenaAuxiliar);
 
-	if(esNumerica(cadenaAuxiliar)==1){
+	if(myGets(cadenaAuxiliar,sizeof cadenaAuxiliar)==0 && esNumerica(cadenaAuxiliar)==1){
 		*pNumero= atoi(cadenaAuxiliar);
 		retorno= 0;
 
 	}
-	//printf("%d retorno en pedir entero  \n ",retorno);
 	return retorno;
 }
 
@@ -71,6 +93,7 @@ int esFlotante(char cadena[]){
 				break;
 			}
 		}
+
 	return retorno;
 }
 
@@ -82,9 +105,8 @@ int pedirFlotante(float* pNumero){
 	retorno= -1;
 
 	fflush(stdin);
-	scanf("%s", cadenaAuxiliar);
 
-	if(esFlotante(cadenaAuxiliar)==1){
+	if(myGets(cadenaAuxiliar,sizeof(cadenaAuxiliar))==0 &&esFlotante(cadenaAuxiliar)==1){
 		*pNumero= atof(cadenaAuxiliar);
 		retorno= 0;
 
@@ -161,7 +183,7 @@ int sonLetras(char cadena[]){
 				if(cadena[i]<' '||(cadena[i]>' ' && cadena[i]<'A') || (cadena[i]>'Z' && cadena[i]<'a') || cadena[i]>'z'){
 					retorno=0;
 					break;
-					printf("Ingreso al if");
+					//printf("Ingreso al if");
 				}
 				i++;
 			}

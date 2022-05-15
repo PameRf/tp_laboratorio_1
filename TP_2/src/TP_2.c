@@ -24,13 +24,8 @@ int main(void) {
 	int validarMenu;
 	int flagMenu;
 	Passenger pasajeros[CANTIDAD_PASAJEROS];
-
 	Passenger auxPasajero;
 	int validarRetorno;
-	//int idPasajero;
-	//int index;
-	//int validaPaxCargado;
-
 
 
 	validarRetorno=initPassengers(pasajeros, CANTIDAD_PASAJEROS);
@@ -90,7 +85,7 @@ int main(void) {
 				else{
 					printf("Primero debe estar cargado algun pasajero\n");
 				}
-				//printf("Su codigo de vuelo es %s: \n",flycode);
+
 				break;
 			case 4:
 				if(flagMenu==1 || flagMenu==2){
@@ -99,12 +94,15 @@ int main(void) {
 					printf("\n\n");
 					sortPassengers(pasajeros, CANTIDAD_PASAJEROS, 0);
 					printf("\n\n");
+					printf("Pasajeros ordenados alfabeticamente y por tipo si son iguales \n");
 					printPassenger(pasajeros, CANTIDAD_PASAJEROS);
 					printf("\n\n");
 					calcularPrecioPromedio(pasajeros, CANTIDAD_PASAJEROS);
+					printf("\n\n");
 					printPassenger(pasajeros, CANTIDAD_PASAJEROS);
 					printf("\n\n");
 					sortPassengersByCode(pasajeros, CANTIDAD_PASAJEROS, 0);
+					printf("Pasajeros ordenados por codigo de vuelo y por estado de vuelo si son iguales\n");
 					printPassenger(pasajeros, CANTIDAD_PASAJEROS);
 					printf("\n\n");
 				}
@@ -118,7 +116,7 @@ int main(void) {
 				flagMenu=2;
 				break;
 			case 6:
-				printf("Gracias por elegir Smart Travel");
+				printf("Gracias por elegir Smart Travel\n4");
 				break;
 		}
 	}
