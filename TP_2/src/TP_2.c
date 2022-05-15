@@ -116,7 +116,7 @@ int main(void) {
 				flagMenu=2;
 				break;
 			case 6:
-				printf("Gracias por elegir Smart Travel\n4");
+				printf("Gracias por elegir Smart Travel\n");
 				break;
 		}
 	}
