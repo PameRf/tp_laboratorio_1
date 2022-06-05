@@ -7,7 +7,12 @@
 
 #ifndef PASSENGER_H_
 #define PASSENGER_H_
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "LinkedList.h"
+#include "Controller.h"
+#include "inputs.h"
 typedef struct
 {
 	int id;

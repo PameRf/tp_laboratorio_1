@@ -75,5 +75,9 @@ int sonLetras(char cadena[]);
 /// @param len tamanio
 /// @return-1 sino pudo retornarlo o 0 si pudo hacerlo
 int pedirCaracteres(char cadena[],char mensaje[], int len);
+/// @brief la funcion muestra un submenu
+///
+void mostrarSubMenu();
+
 
 #endif /* INPUTS_H_ */

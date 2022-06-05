@@ -5,6 +5,7 @@
  *      Author: pamel
  */
 
+
 #include "inputs.h"
 
 int myGets(char cadena[], int len){
@@ -220,4 +221,3 @@ void mostrarSubMenu(){
 			"5. Codigo de vuelo \n"	);
 
 	}
-
