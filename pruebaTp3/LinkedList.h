@@ -39,17 +39,17 @@ int ll_len(LinkedList* this);
 Node* test_getNode(LinkedList* this, int nodeIndex);
 int test_addNode(LinkedList* this, int nodeIndex,void* pElement);
 int ll_add(LinkedList* this, void* pElement);
-void* ll_get(LinkedList* this, int index);
-int ll_set(LinkedList* this, int index,void* pElement);
-int ll_remove(LinkedList* this,int index);
-int ll_clear(LinkedList* this);
-int ll_deleteLinkedList(LinkedList* this);
-int ll_indexOf(LinkedList* this, void* pElement);
-int ll_isEmpty(LinkedList* this);
-int ll_push(LinkedList* this, int index, void* pElement);
-void* ll_pop(LinkedList* this,int index);
-int ll_contains(LinkedList* this, void* pElement);
-int ll_containsAll(LinkedList* this,LinkedList* this2);
-LinkedList* ll_subList(LinkedList* this,int from,int to);
-LinkedList* ll_clone(LinkedList* this);
-int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order);
+void* ll_get(LinkedList* this, int index);// me devuelve el elemento
+int ll_set(LinkedList* this, int index,void* pElement);//me lo agrega en el indice y lo piso
+int ll_remove(LinkedList* this,int index);//me devuelve si sali
+int ll_clear(LinkedList* this);// vacia la la likedlis
+int ll_deleteLinkedList(LinkedList* this);// free la borra
+int ll_indexOf(LinkedList* this, void* pElement);//devuelve el indice
+int ll_isEmpty(LinkedList* this);//si esta vacia o no
+int ll_push(LinkedList* this, int index, void* pElement);// agregar a  uno nuevo y desplaza a los demas
+void* ll_pop(LinkedList* this,int index);//devuelve el pax revomido lista de clientes inactivos
+int ll_contains(LinkedList* this, void* pElement);//esta dentro o no
+int ll_containsAll(LinkedList* this,LinkedList* this2);// dos likedlis si la segunda esta dentro dela primera
+LinkedList* ll_subList(LinkedList* this,int from,int to);//lista nueva en rango de posisiones
+LinkedList* ll_clone(LinkedList* this);//clona la lista
+int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order);//ordenamiento

@@ -1,9 +1,10 @@
 /*
  * inputs.c
  *
- *  Created on: 5 jun. 2022
+ *  Created on: 4 jun. 2022
  *      Author: pamel
  */
+
 
 #include "inputs.h"
 
@@ -220,5 +221,3 @@ void mostrarSubMenu(){
 			"5. Codigo de vuelo \n"	);
 
 	}
-
-

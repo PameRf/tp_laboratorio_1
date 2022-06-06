@@ -5,7 +5,6 @@
  *
  */
 
-
 #ifndef PASSENGER_H_
 #define PASSENGER_H_
 #include <stdio.h>
@@ -50,6 +49,7 @@ int Passenger_getPrecio(Passenger* this,float* precio);
 
 int Passenger_setEstadoVuelo(Passenger* this,int estadoVuelo);
 int Passenger_getEstadoVuelo(Passenger* this,int* estadoVuelo);
+
 
 
 #endif /* PASSENGER_H_ */

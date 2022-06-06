@@ -4,7 +4,6 @@
  *  Created on: 19 may. 2022
  *      Author: Maru
  */
-
 #include "Passenger.h"
 
 Passenger* Passenger_new(){
