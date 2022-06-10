@@ -78,6 +78,7 @@ int pedirCaracteres(char cadena[],char mensaje[], int len);
 /// @brief la funcion muestra un submenu
 ///
 void mostrarSubMenu();
+int pedirLetrasYnumeros(char cadena[], char mensaje[], int len);
 
 
 #endif /* INPUTS_H_ */

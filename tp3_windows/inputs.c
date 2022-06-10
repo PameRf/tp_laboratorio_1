@@ -217,8 +217,27 @@ void mostrarSubMenu(){
 			"2. Apellido \n"
 			"3. Precio \n"
 			"4. Tipo de pasajero\n"
-			"5. Codigo de vuelo \n"	);
+			"5. Codigo de vuelo \n"
+			"6. Estado de vuelo");
 
+}
+
+int pedirLetrasYnumeros(char cadena[], char mensaje[], int len){
+
+	int retorno;
+
+	retorno= -1;
+
+	if(cadena != NULL && mensaje  != NULL &&  len> 0){
+
+		printf("%s", mensaje);
+		fflush(stdin);
+		if(fgets(cadena,len,stdin)){
+
+			cadena[strlen(cadena)-1] = '\0';
+			retorno=0;
+		}
 	}
-
+	return retorno;
+}
 

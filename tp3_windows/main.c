@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
 #include "LinkedList.h"
 #include "Controller.h"
 #include "Passenger.h"
@@ -49,11 +51,18 @@ int main()
 			switch(option)
 			{
 				case 1:
-					printf("opcion1\n");
-					controller_loadFromText("data.csv",listaPasajeros);
+
+					if(controller_loadFromText("data.csv",listaPasajeros)==0){
+						printf("Se cargo la lista de pasajeros");
+					}
+					else{
+						printf("No se pudo cargar la lista");
+					}
+
+
 					break;
 				case 2:
-					printf("opcion2\n");
+					printf("Pedir\n");
 					break;
 				case 3:
 					printf("opcion3\n");
@@ -68,7 +77,9 @@ int main()
 					printf("opcion6\n");
 					break;
 				case 7:
-					printf("opcion7\n");
+
+					controller_ListPassenger(listaPasajeros);
+
 					break;
 				case 8:
 					printf("opcion8\n");

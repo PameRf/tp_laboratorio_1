@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "LinkedList.h"
 #include "Passenger.h"
+#include "inputs.h"
 
 /** \brief Parsea los datos los datos de los pasajeros desde el archivo data.csv (modo texto).
  *
@@ -12,8 +13,31 @@
  */
 int parser_PassengerFromText(FILE* pFile , LinkedList* pArrayListPassenger)
 {
+	int retorno=-1;
+	Passenger* unPasajero;
 
-    return 1;
+	char id[200];
+	char nombre[200];
+	char apellido[200];
+	char precio[200];
+	char codigoVuelo[200];
+	char tipoPasajero[200];
+	char estadoVuelo[200];
+
+	if(pFile!=NULL && pArrayListPassenger !=NULL){
+
+		fscanf(pFile,"%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]\n",id,nombre,apellido,precio,codigoVuelo,tipoPasajero,estadoVuelo);
+		do{
+			fscanf(pFile,"%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]\n",id,nombre,apellido,precio,codigoVuelo,tipoPasajero,estadoVuelo);
+			unPasajero=Passenger_newParametros(id,nombre,apellido,precio,codigoVuelo,tipoPasajero,estadoVuelo);
+			if(unPasajero !=NULL){
+			ll_add(pArrayListPassenger, unPasajero);
+			retorno=0;
+			}
+		}while(!feof(pFile));
+	}
+	fclose(pFile);
+    return retorno;
 }
 
 /** \brief Parsea los datos los datos de los pasajeros desde el archivo data.csv (modo binario).
