@@ -109,10 +109,11 @@ int main()
 						printf("El archivo se guardo exitosamente\n");
 					}
 					else{
-						printf("No se pudo guardar el archivo\n");
+						printf("No se pudo guard\n");
 					}
 					break;
 				case 9:
+					controller_saveAsBinary("Archivoprueba.bin", listaPasajeros);
 					printf("opcion9\n");
 					break;
 

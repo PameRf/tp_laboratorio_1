@@ -528,53 +528,100 @@ int findPassengerById(LinkedList* pArrayListPassenger,int id){
 
 void mostrarUnPax(Passenger* pPasajero){
 
+
 	int id;
-	char nombre[200];
-	char apellido[200];
+	char nombre[50];
+	char apellido[50];
 	float precio;
-	char codigoVuelo[200];
+	char codigoVuelo[7];
 	int tipoPasajero;
 	int estadoVuelo;
-	char auxTipo[200];
-	char auxEstado[200];
+	char auxTipo[50];
+	char auxEstado[50];
 
-	if(pPasajero != NULL){
+	Passenger_getId(pPasajero, &id);
+	Passenger_getNombre(pPasajero, nombre);
+	Passenger_getApellido(pPasajero, apellido);
+	Passenger_getPrecio(pPasajero, &precio);
+	Passenger_getCodigoVuelo(pPasajero, codigoVuelo);
+	Passenger_getTipoPasajero(pPasajero,&tipoPasajero);
+	Passenger_getEstadoVuelo(pPasajero, &estadoVuelo);
 
-			Passenger_getId(pPasajero, &id);
-			Passenger_getNombre(pPasajero, nombre);
-			Passenger_getApellido(pPasajero, apellido);
-			Passenger_getPrecio(pPasajero, &precio);
-			Passenger_getCodigoVuelo(pPasajero, codigoVuelo);
-			Passenger_getTipoPasajero(pPasajero,&tipoPasajero);
-			Passenger_getEstadoVuelo(pPasajero, &estadoVuelo);
-
-			switch(tipoPasajero){
-			case 1:
-				strcpy(auxTipo, "FirstClass");
-				break;
-			case 2:
-				strcpy(auxTipo, "ExecutiveClass");
-				break;
-			case 3:
-				strcpy(auxTipo, "EconomyClass");
-				break;
-
-			}
-			switch(estadoVuelo){
-			case 4:
-				strcpy(auxEstado, "Aterrizado");
-				break;
-			case 5:
-				strcpy(auxEstado, "En Horario");
-				break;
-			case 6:
-				strcpy(auxEstado, "En Vuelo");
-				break;
-
-			}
-			printf("%-4d %-10s %-15s %-19.2f %-12s %-19s %-10s \n",id, nombre, apellido, precio, codigoVuelo, auxTipo, auxEstado);
+	switch(tipoPasajero){
+	case 1:
+		strcpy(auxTipo, "FirstClass");
+		break;
+	case 2:
+		strcpy(auxTipo, "ExecutiveClass");
+		break;
+	case 3:
+		strcpy(auxTipo, "EconomyClass");
+		break;
 
 	}
+	switch(estadoVuelo){
+	case 4:
+		strcpy(auxEstado, "Aterrizado");
+		break;
+	case 5:
+		strcpy(auxEstado, "En Horario");
+		break;
+	case 6:
+		strcpy(auxEstado, "En Vuelo");
+		break;
+
+	}
+
+
+	printf("%-4d %-10s %-15s %-19.2f %-12s %-19s %-10s \n",id, nombre, apellido, precio, codigoVuelo, auxTipo, auxEstado);
+
+//	int id;
+//	char nombre[200];
+//	char apellido[200];
+//	float precio;
+//	char codigoVuelo[200];
+//	int tipoPasajero;
+//	int estadoVuelo;
+//	char auxTipo[200];
+//	char auxEstado[200];
+//
+//	if(pPasajero != NULL){
+//
+//			Passenger_getId(pPasajero, &id);
+//			Passenger_getNombre(pPasajero, nombre);
+//			Passenger_getApellido(pPasajero, apellido);
+//			Passenger_getPrecio(pPasajero, &precio);
+//			Passenger_getCodigoVuelo(pPasajero, codigoVuelo);
+//			Passenger_getTipoPasajero(pPasajero,&tipoPasajero);
+//			Passenger_getEstadoVuelo(pPasajero, &estadoVuelo);
+//
+//			switch(tipoPasajero){
+//			case 1:
+//				strcpy(auxTipo, "FirstClass");
+//				break;
+//			case 2:
+//				strcpy(auxTipo, "ExecutiveClass");
+//				break;
+//			case 3:
+//				strcpy(auxTipo, "EconomyClass");
+//				break;
+//
+//			}
+//			switch(estadoVuelo){
+//			case 4:
+//				strcpy(auxEstado, "Aterrizado");
+//				break;
+//			case 5:
+//				strcpy(auxEstado, "En Horario");
+//				break;
+//			case 6:
+//				strcpy(auxEstado, "En Vuelo");
+//				break;
+//
+//			}
+//			printf("%-4d %-10s %-15s %-19.2f %-12s %-19s %-10s \n",id, nombre, apellido, precio, codigoVuelo, auxTipo, auxEstado);
+
+//	}
 }
 
 int Passenger_compararXNombre(void* paxUno, void* paxDos) {
