@@ -28,7 +28,7 @@ int main()
 	setbuf(stdout,NULL);
     int option = 0;
     int validarMenu;
-    FILE* file;
+
 
     LinkedList* listaPasajeros = ll_newLinkedList();
 
@@ -36,7 +36,7 @@ int main()
     do{
     	printf(".............................MENU.............................................\n");
     	printf("1. Cargar los datos de los pasajeros desde el archivo data.csv (modo texto).\n ");
-    	printf("2. Cargar los datos de los pasajeros desde el archivo data.csv (modo binario).\n");
+        printf("2. Cargar los datos de los pasajeros desde el archivo data.csv (modo binario).\n");
     	printf("3. Alta de pasajero\n");
     	printf("4. Modificar datos de pasajero\n");
     	printf("5. Baja de pasajero\n");
@@ -53,40 +53,64 @@ int main()
 			{
 				case 1:
 
-					if(controller_loadFromText("data.csv",listaPasajeros)==0){
-						printf("Se cargo la lista de pasajeros\n");
+					if(controller_loadFromText("Archivoprueba.txt",listaPasajeros)==0){
+						printf("Se cargo el archivo de pasajeros\n");
 					}
 					else{
-						printf("No se pudo cargar la lista\n");
+						printf("No se pudo cargar el archivo \n");
 					}
-
-
 					break;
 				case 2:
-					printf("Pedir\n");
+					if(controller_loadFromBinary("Archivoprueba.bin",listaPasajeros)==0){
+						printf("Se cargo el archivo en binario\n");
+					}
+					else{
+						printf("No se pudo cargar el archivo en binario\n");
+					}
 					break;
 				case 3:
-					file=fopen("Archivoprueba.txt","w");
-					if(file != NULL){
-						controller_addPassenger(listaPasajeros);
-					}
-					fclose(file);
+					controller_addPassenger(listaPasajeros);
+
 					printf("opcion3\n");
 					break;
 				case 4:
-					printf("opcion4\n");
+					if(controller_editPassenger(listaPasajeros)==0){
+						printf("El pasajero se modifico correctamente\n");
+					}
+					else{
+						printf("El pasajero no se modifico\n");
+					}
 					break;
 				case 5:
-					printf("opcion5\n");
+					if(controller_removePassenger(listaPasajeros)==0){
+
+						printf("El pasajero se dio de baja correctamente\n");
+					}
+					else{
+						printf("El pasajero no se pudo dar de baja\n");
+					}
 					break;
 				case 6:
+					if(listaPasajeros != NULL){
 					controller_ListPassenger(listaPasajeros);
+					}
+					else{
+						printf("Debe cargar el archivo primero\n");
+					}
 					break;
 				case 7:
-					printf("opcion8\n");
+					if(controller_sortPassenger(listaPasajeros)==0){
+						printf("Pasajeros ordenados\n");
+						controller_ListPassenger(listaPasajeros);
+					}
 					break;
 				case 8:
-					printf("opcion8\n");
+					if(controller_saveAsText("Archivoprueba.txt",listaPasajeros)==0){
+						printf("El archivo se guardo exitosamente\n");
+					}
+					else{
+						printf("No se pudo guardar el archivo\n");
+					}
 					break;
 				case 9:
 					printf("opcion9\n");

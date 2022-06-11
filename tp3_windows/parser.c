@@ -49,6 +49,25 @@ int parser_PassengerFromText(FILE* pFile , LinkedList* pArrayListPassenger)
  */
 int parser_PassengerFromBinary(FILE* pFile , LinkedList* pArrayListPassenger)
 {
+	int retorno=-1;
+	Passenger* auxPax;
 
-    return 1;
+	if(pFile !=NULL && pArrayListPassenger !=NULL){
+
+		printf("entra al if de parser");
+		do{
+				auxPax=Passenger_new();
+				if(auxPax !=NULL){
+				printf("entra al do de parser");
+				fread(auxPax,sizeof(Passenger),1,pFile);
+				ll_add(pArrayListPassenger, auxPax);
+				retorno=0;
+				}
+				else{
+					Passenger_delete(auxPax);
+				}
+			}while(!feof(pFile));
+	}
+
+    return retorno;
 }

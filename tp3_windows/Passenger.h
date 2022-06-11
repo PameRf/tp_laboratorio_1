@@ -27,7 +27,7 @@ typedef struct
 	char nombre[50];
 	char apellido[50];
 	float precio;
-	char codigoVuelo[4];
+	char codigoVuelo[7];
 	int tipoPasajero;
 	int estadoVuelo;
 
@@ -62,11 +62,17 @@ int Passenger_getEstadoVuelo(Passenger* this,int* estadoVuelo);
 int convertirTipoAentero(char* tipoPasajero);
 int convertirEstadoAentero(char* estadoVuelo);
 
-int generarId();
-Passenger* cargarUnPax();
+int buscarUltimoID(LinkedList* pArrayListPassenger);
+int generarNuevoId(LinkedList* pArrayListPassenger);
+Passenger* cargarUnPax(LinkedList* pArrayListPassenger);
 int findPassengerById(LinkedList* pArrayListPassenger,int id);
 int modificarPasajero(Passenger* pPasajero);
 void mostrarUnPax(Passenger* pPasajero);
-
+int Passenger_compararXNombre(void* paxUno, void* paxDos);
+int Passenger_compararXapellido(void* paxUno, void* paxDos);
+int Passenger_compararXPrecio(void* paxUno, void* paxDos);
+int Passenger_compararXtipo(void* paxUno, void* paxDos);
+int Passenger_compararXestado(void* paxUno, void* paxDos);
+void menuSort();
 
 #endif /* PASSENGER_H_ */

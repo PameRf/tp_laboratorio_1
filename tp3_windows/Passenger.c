@@ -212,7 +212,7 @@ int Passenger_setPrecio(Passenger *this, float precio) {
 	retorno = -1;
 
 	if (this != NULL && precio > 0) {
-		this->tipoPasajero = precio;
+		this->precio = precio;
 		retorno = 0;
 	}
 	return retorno;
@@ -224,7 +224,7 @@ int Passenger_getPrecio(Passenger *this, float *precio) {
 	retorno = -1;
 
 	if (this != NULL && precio > 0) {
-		*precio = this->tipoPasajero;
+		*precio = this->precio ;
 		;
 		retorno = 0;
 	}
@@ -263,14 +263,17 @@ int convertirTipoAentero(char *tipoPasajero) {
 		if (strcmp(tipoPasajero, "FirstClass") == 0) {
 
 			strcpy(tipoPasajero, FIRST_CLASS);
+			retorno = 0;
 		}
 		if (strcmp(tipoPasajero, "ExecutiveClass") == 0) {
 			strcpy(tipoPasajero, EXECUTIVE_CLASS);
+			retorno = 0;
 		}
 		if (strcmp(tipoPasajero, "EconomyClass") == 0) {
 			strcpy(tipoPasajero, ECONOMY_CLASS);
+			retorno = 0;
 		}
-		retorno = 0;
+
 	}
 	return retorno;
 }
@@ -294,18 +297,46 @@ int convertirEstadoAentero(char *estadoVuelo) {
 	}
 	return retorno;
 }
+int buscarUltimoID(LinkedList* pArrayListPassenger){
 
-int generarId(){
+	int retorno=-1;
+	int size;
+	Passenger* auxPax;
+	int id;
+	int idMayor=0;
+	int flagId=0;
+	if(pArrayListPassenger !=NULL){
+		size=ll_len(pArrayListPassenger);
 
-	static int idPasajero = 1000;
-
-	idPasajero++;
-
-	return idPasajero;
-
+		for(int i=0;i<size;i++){
+				auxPax=(Passenger*)ll_get(pArrayListPassenger, i);
+				Passenger_getId(auxPax, &id);
+				if(flagId==0 || idMayor<id){
+					idMayor=id;
+					retorno=idMayor;
+				}
+		}
+	}
+	return retorno;
 }
 
-Passenger* cargarUnPax(){
+int generarNuevoId(LinkedList* pArrayListPassenger){
+
+	int idPasajero = 0;
+
+	if(pArrayListPassenger !=NULL){
+		idPasajero=buscarUltimoID(pArrayListPassenger);
+		if(idPasajero > 0){
+	    idPasajero++;
+		}
+		else{
+			idPasajero=1001;
+		}
+	}
+	return idPasajero;
+}
+
+Passenger* cargarUnPax(LinkedList* pArrayListPassenger){
 
 	Passenger* unPasajero;
 	int id;
@@ -320,7 +351,8 @@ Passenger* cargarUnPax(){
 	flagCarga=0;
 	unPasajero=NULL;
 
-	  id=generarId();
+	if(pArrayListPassenger != NULL){
+		id=generarNuevoId(pArrayListPassenger);
 
 		if(pedirCaracteres(nombre,"Ingrese el nombre: \n",200)== 0){
 
@@ -372,6 +404,7 @@ Passenger* cargarUnPax(){
 			unPasajero=Passenger_newParametrosUsuario(id,nombre,
 				apellido, precio, codigoVuelo,tipoPasajero,estadoVuelo);
       }
+	}
 
 
 return unPasajero;
@@ -428,7 +461,7 @@ int modificarPasajero(Passenger* pPasajero){
 				retorno=3;
 			}
 			else{
-				printf("Error! no se pudo cargar Precio");
+				printf("Error! no se pudo cargar Precio\n");
 			}
 		 break;
 		 case 4:
@@ -438,7 +471,7 @@ int modificarPasajero(Passenger* pPasajero){
 				retorno=4;
 			}
 			else{
-				printf("Error no se pudo cargar tipo de pasajero");
+				printf("Error no se pudo cargar tipo de pasajero\n");
 			}
 		 break;
 		 case 5:
@@ -448,7 +481,7 @@ int modificarPasajero(Passenger* pPasajero){
 				retorno=5;
 			}
 			else{
-				printf("Error no se pudo cargar el codigo de vuelo");
+				printf("Error no se pudo cargar el codigo de vuelo\n");
 			}
 		 break;
 		 case 6:
@@ -484,7 +517,7 @@ int findPassengerById(LinkedList* pArrayListPassenger,int id){
 
 			auxPasajero= (Passenger*)ll_get(pArrayListPassenger, i);
 
-			if (Passenger_getId(auxPasajero,&idAux)== id){
+			if (Passenger_getId(auxPasajero,&idAux)==0 &&  idAux== id){
 
       		  retorno = i;
 			}
@@ -543,3 +576,137 @@ void mostrarUnPax(Passenger* pPasajero){
 
 	}
 }
+
+int Passenger_compararXNombre(void* paxUno, void* paxDos) {
+
+	int retorno=0;
+	Passenger* primerPax;
+	Passenger* segundoPax;
+	char nombreUno[100];
+	char nombreDos[100];
+
+
+	if (paxUno != NULL && paxDos != NULL) {
+		primerPax = (Passenger*) paxUno;
+		segundoPax = (Passenger*) paxDos;
+
+		Passenger_getNombre(primerPax, nombreUno);
+		Passenger_getNombre(segundoPax, nombreDos);
+
+		retorno = strcmp(nombreUno, nombreDos);
+	}
+
+	return retorno;
+}
+
+int Passenger_compararXapellido(void* paxUno, void* paxDos) {
+
+	int retorno=0;
+	Passenger* primerPax;
+	Passenger* segundoPax;
+	char apellidoUno[100];
+	char apellidoDos[100];
+
+
+	if (paxUno != NULL && paxDos != NULL) {
+		primerPax = (Passenger*) paxUno;
+		segundoPax = (Passenger*) paxDos;
+
+		Passenger_getApellido(primerPax, apellidoUno);
+		Passenger_getApellido(segundoPax, apellidoDos);
+
+		retorno = strcmp(apellidoUno, apellidoDos);
+	}
+
+	return retorno;
+}
+
+int Passenger_compararXPrecio(void* paxUno, void* paxDos){
+
+	int retorno=0;
+	Passenger* primerPax;
+	Passenger* segundoPax;
+	float primerPrecio;
+	float segundoPrecio;
+
+	if (paxUno != NULL && paxDos != NULL) {
+			primerPax = (Passenger*) paxUno;
+			segundoPax = (Passenger*) paxDos;
+			Passenger_getPrecio(primerPax,&primerPrecio);
+			Passenger_getPrecio(segundoPax,&segundoPrecio);
+			if(primerPrecio > segundoPrecio){
+					retorno=1;
+				}
+			else if(primerPrecio < segundoPrecio){
+
+					retorno=-1;
+				}
+		}
+	return retorno;
+}
+
+
+
+int Passenger_compararXtipo(void* paxUno, void* paxDos){
+
+	int retorno=0;
+	Passenger* primerPax;
+	Passenger* segundoPax;
+	int primerTipo;
+	int segundoTipo;
+
+
+	if (paxUno != NULL && paxDos != NULL) {
+			primerPax = (Passenger*) paxUno;
+			segundoPax = (Passenger*) paxDos;
+			Passenger_getTipoPasajero(primerPax,&primerTipo);
+			Passenger_getTipoPasajero(segundoPax,&segundoTipo);
+			if(primerTipo > segundoTipo){
+				retorno=1;
+			}
+			else if(primerTipo < segundoTipo){
+
+				retorno=-1;
+			}
+		}
+  return retorno;
+}
+
+int Passenger_compararXestado(void* paxUno, void* paxDos){
+
+	int retorno=0;
+	Passenger* primerPax;
+	Passenger* segundoPax;
+	int primerEstado;
+	int segundoEstado;
+
+
+	if (paxUno != NULL && paxDos != NULL) {
+			primerPax = (Passenger*) paxUno;
+			segundoPax = (Passenger*) paxDos;
+			Passenger_getEstadoVuelo(primerPax,&primerEstado);
+			Passenger_getEstadoVuelo(segundoPax,&segundoEstado);
+			if(primerEstado > segundoEstado){
+				retorno=1;
+			}
+			else if(primerEstado < segundoEstado){
+
+				retorno=-1;
+			}
+		}
+  return retorno;
+}
+
+
+void menuSort(){
+
+	printf("Elija la opcion que desea ordenar: \n"
+				"1. Nombre \n"
+				"2. Apellido \n"
+				"3. Precio \n"
+				"4. Tipo de pasajero\n"
+				"5. Estado de vuelo\n");
+}
+
+
+

@@ -1,0 +1,2 @@
+id,Nombre,apellido,precio,codigo de vuelo,tipo de pasajero,estado de vuelo
+1053800,Nombre,uelo,813304632374797530000000000000000.000000,codigo de vuelo,1970675813,7302245
