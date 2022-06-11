@@ -468,8 +468,6 @@ int modificarPasajero(Passenger* pPasajero){
 
 
 
-
-
 int findPassengerById(LinkedList* pArrayListPassenger,int id){
 
 	int retorno=-1;
@@ -488,10 +486,60 @@ int findPassengerById(LinkedList* pArrayListPassenger,int id){
 
 			if (Passenger_getId(auxPasajero,&idAux)== id){
 
-			  retorno = i;
-
+      		  retorno = i;
 			}
 		}
 	}
 	return retorno;
+}
+
+void mostrarUnPax(Passenger* pPasajero){
+
+	int id;
+	char nombre[200];
+	char apellido[200];
+	float precio;
+	char codigoVuelo[200];
+	int tipoPasajero;
+	int estadoVuelo;
+	char auxTipo[200];
+	char auxEstado[200];
+
+	if(pPasajero != NULL){
+
+			Passenger_getId(pPasajero, &id);
+			Passenger_getNombre(pPasajero, nombre);
+			Passenger_getApellido(pPasajero, apellido);
+			Passenger_getPrecio(pPasajero, &precio);
+			Passenger_getCodigoVuelo(pPasajero, codigoVuelo);
+			Passenger_getTipoPasajero(pPasajero,&tipoPasajero);
+			Passenger_getEstadoVuelo(pPasajero, &estadoVuelo);
+
+			switch(tipoPasajero){
+			case 1:
+				strcpy(auxTipo, "FirstClass");
+				break;
+			case 2:
+				strcpy(auxTipo, "ExecutiveClass");
+				break;
+			case 3:
+				strcpy(auxTipo, "EconomyClass");
+				break;
+
+			}
+			switch(estadoVuelo){
+			case 4:
+				strcpy(auxEstado, "Aterrizado");
+				break;
+			case 5:
+				strcpy(auxEstado, "En Horario");
+				break;
+			case 6:
+				strcpy(auxEstado, "En Vuelo");
+				break;
+
+			}
+			printf("%-4d %-10s %-15s %-19.2f %-12s %-19s %-10s \n",id, nombre, apellido, precio, codigoVuelo, auxTipo, auxEstado);
+
+	}
 }

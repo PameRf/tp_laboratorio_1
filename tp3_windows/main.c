@@ -28,6 +28,7 @@ int main()
 	setbuf(stdout,NULL);
     int option = 0;
     int validarMenu;
+    FILE* file;
 
     LinkedList* listaPasajeros = ll_newLinkedList();
 
@@ -53,10 +54,10 @@ int main()
 				case 1:
 
 					if(controller_loadFromText("data.csv",listaPasajeros)==0){
-						printf("Se cargo la lista de pasajeros");
+						printf("Se cargo la lista de pasajeros\n");
 					}
 					else{
-						printf("No se pudo cargar la lista");
+						printf("No se pudo cargar la lista\n");
 					}
 
 
@@ -65,6 +66,11 @@ int main()
 					printf("Pedir\n");
 					break;
 				case 3:
+					file=fopen("Archivoprueba.txt","w");
+					if(file != NULL){
+						controller_addPassenger(listaPasajeros);
+					}
+					fclose(file);
 					printf("opcion3\n");
 					break;
 				case 4:
@@ -74,12 +80,10 @@ int main()
 					printf("opcion5\n");
 					break;
 				case 6:
-					printf("opcion6\n");
+					controller_ListPassenger(listaPasajeros);
 					break;
 				case 7:
-
-					controller_ListPassenger(listaPasajeros);
-
+					printf("opcion8\n");
 					break;
 				case 8:
 					printf("opcion8\n");

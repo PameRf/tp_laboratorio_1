@@ -66,6 +66,7 @@ int generarId();
 Passenger* cargarUnPax();
 int findPassengerById(LinkedList* pArrayListPassenger,int id);
 int modificarPasajero(Passenger* pPasajero);
+void mostrarUnPax(Passenger* pPasajero);
 
 
 #endif /* PASSENGER_H_ */

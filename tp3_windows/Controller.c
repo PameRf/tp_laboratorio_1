@@ -92,7 +92,37 @@ int controller_addPassenger(LinkedList* pArrayListPassenger)
  */
 int controller_editPassenger(LinkedList* pArrayListPassenger)
 {
-    return 1;
+	int retorno=-1;
+	int idAbuscar;
+	int validar;
+	int indiceEncontrado;
+	Passenger* auxPax;
+	auxPax=NULL;
+
+	if(pArrayListPassenger != NULL){
+
+		validar=pedirNumero(&idAbuscar, "Ingrese el numero de id del pasajero a modifica \n", "Error! dato invalido", 1, 1000, 2);
+		if(validar==0){
+
+			indiceEncontrado=findPassengerById(pArrayListPassenger,idAbuscar);
+
+			if(indiceEncontrado != -1){
+				auxPax=(Passenger*)ll_get(pArrayListPassenger, indiceEncontrado);
+
+				if(auxPax != NULL){
+
+					mostrarUnPax(auxPax);
+
+					if((validar=modificarPasajero(auxPax))== 0){
+						printf("El pasajero se pudo modificar");
+						mostrarUnPax(auxPax);
+						retorno=0;
+					}
+				}
+			}
+		}
+	}
+    return retorno;
 }
 
 /** \brief Baja de pasajero
