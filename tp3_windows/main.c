@@ -28,6 +28,7 @@ int main()
 	setbuf(stdout,NULL);
     int option = 0;
     int validarMenu;
+    int flagMenu=0;
 
 
     LinkedList* listaPasajeros = ll_newLinkedList();
@@ -46,80 +47,149 @@ int main()
     	printf("9. Guardar los datos de los pasajeros en el archivo data.csv (modo binario).\n");
     	printf("10. Salir\n");
 
-    	validarMenu=pedirNumero(&option, "Ingrese una opcion \n","Error! opcion invalida\n", 1, 10,2);
+    	validarMenu=pedirNumero(&option, "Ingrese una opcion \n","Error! opcion invalida\n", 1, 11,2);
 
     	if(validarMenu==0){
 			switch(option)
 			{
 				case 1:
-
-					if(controller_loadFromText("Archivoprueba.txt",listaPasajeros)==0){
-						printf("Se cargo el archivo de pasajeros\n");
-					}
-					else{
-						printf("No se pudo cargar el archivo \n");
-					}
+				    if(flagMenu==0){
+						if(controller_loadFromText("Archivoprueba.txt",listaPasajeros)==0){
+							printf("Se cargo el archivo de pasajeros\n");
+							flagMenu=1;
+						}
+						else{
+							printf("No se pudo cargar el archivo \n");
+						}
+				    }
+				    else{
+							printf("No puede cargar dos veces la lista\n");
+						}
 					break;
 				case 2:
-					if(controller_loadFromBinary("Archivoprueba.bin",listaPasajeros)==0){
-						printf("Se cargo el archivo en binario\n");
+					if(flagMenu==0){
+						if(controller_loadFromBinary("Archivoprueba.bin",listaPasajeros)==0){
+							printf("Se cargo el archivo en binario\n");
+							flagMenu=2;
+						}
+						else{
+							printf("No se pudo cargar el archivo en binario\n");
+						}
 					}
-					else{
-						printf("No se pudo cargar el archivo en binario\n");
-					}
+				  else{
+						   printf("No puede cargar dos veces la lista");
+					  }
 					break;
 				case 3:
-					controller_addPassenger(listaPasajeros);
-
-					printf("opcion3\n");
-					break;
-				case 4:
-					if(controller_editPassenger(listaPasajeros)==0){
-						printf("El pasajero se modifico correctamente\n");
+					if(controller_addPassenger(listaPasajeros)==0){
+						printf("El pasajero se cargo correctamente\n");
 					}
 					else{
-						printf("El pasajero no se modifico\n");
+
+						printf("No se pudo cargar pasajero\n");
+					}
+					break;
+				case 4:
+					if(flagMenu ==1||flagMenu==2 ){
+						if(controller_editPassenger(listaPasajeros)==0){
+							printf("El pasajero se modifico correctamente\n");
+							flagMenu=1;
+						}
+						else{
+							printf("El pasajero no se modifico\n");
+						}
+					}
+					else{
+						printf("Primero debe cargar la lista o un pasajero\n");
 					}
 					break;
 				case 5:
-					if(controller_removePassenger(listaPasajeros)==0){
+					if(flagMenu ==1||flagMenu==2 ){
+						if(controller_removePassenger(listaPasajeros)==0){
 
-						printf("El pasajero se dio de baja correctamente\n");
+							printf("El pasajero se dio de baja correctamente\n");
+							flagMenu=1;
+						}
+						else{
+							printf("El pasajero no se pudo dar de baja\n");
+						}
 					}
 					else{
-						printf("El pasajero no se pudo dar de baja\n");
-					}
+							printf("Primero debe cargar la lista o un pasajero\n");
+						}
 					break;
 				case 6:
-					if(listaPasajeros != NULL){
-					controller_ListPassenger(listaPasajeros);
+					if(flagMenu ==1||flagMenu==2 ){
+						if(listaPasajeros != NULL){
+						controller_ListPassenger(listaPasajeros);
+						}
+						else{
+							printf("Debe cargar el archivo primero\n");
+							flagMenu=1;
+						}
 					}
 					else{
-						printf("Debe cargar el archivo primero\n");
-					}
+							printf("Primero debe cargar la lista o un pasajero\n");
+						}
 					break;
 				case 7:
-					if(controller_sortPassenger(listaPasajeros)==0){
-						printf("Pasajeros ordenados\n");
-						controller_ListPassenger(listaPasajeros);
-					}
-					break;
-				case 8:
-					if(controller_saveAsText("Archivoprueba.txt",listaPasajeros)==0){
-						printf("El archivo se guardo exitosamente\n");
+					if(flagMenu ==1||flagMenu==2 ){
+						if(controller_sortPassenger(listaPasajeros)==0){
+							printf("Pasajeros ordenados\n");
+							controller_ListPassenger(listaPasajeros);
+							flagMenu=1;
+						}
+						else{
+							printf("No se pudo ordenar los pasajeros\n");
+						}
 					}
 					else{
-						printf("No se pudo guard\n");
+							printf("Primero debe cargar la lista o un pasajero\n");
+						}
+					break;
+				case 8:
+					if(flagMenu==1){
+						if(controller_saveAsText("Archivoprueba.txt",listaPasajeros)==0){
+							printf("El archivo se guardo exitosamente\n");
+							flagMenu=1;
+						}
+						else{
+							printf("No se pudo guard\n");
+						}
+					}
+					else{
+						printf("Primero debe cargar la lista o un pasajero\n");
+
 					}
 					break;
 				case 9:
-					controller_saveAsBinary("Archivoprueba.bin", listaPasajeros);
-					printf("opcion9\n");
+					if(flagMenu== 1){
+						if(controller_saveAsBinary("Archivoprueba.bin", listaPasajeros)==0){
+							printf("El archivo se guardo en binario correctamente\n");
+							flagMenu=0;
+						}
+						else{
+							printf("No se pudo cargar el archivo \n");
+						}
+					}
+					break;
+				case 10:
+					if(flagMenu== 1){
+					if(controller_removeList(listaPasajeros)==0){
+						printf("Se borro la lista \n");
+					}
+					else{
+						printf("No se pudo borrar la lista \n");
+					}
+					}
+					else{
+						printf("primero debe tener una lista\n");
+					}
 					break;
 
 			}
     	}
-    }while(option != 10);
+    }while(option != 11);
     return 0;
 }
 

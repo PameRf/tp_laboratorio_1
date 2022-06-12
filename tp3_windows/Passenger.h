@@ -37,6 +37,7 @@ Passenger* Passenger_new();
 Passenger* Passenger_newParametros(char* idStr,char* nombreStr, char* apellidoStr, char* precioStr, char* tipoPasajeroStr, char* codigoVueloStr, char* estadoVueloStr);
 Passenger* Passenger_newParametrosUsuario(int idStr, char *nombreStr,char *apellidoStr, float precioStr, char* codigoVueloStr,int tipoPasajeroStr, int estadoVueloStr);
 void Passenger_delete(Passenger* this);
+int Passenger_BorrarLista(LinkedList* pArrayListPassenger);
 
 int Passenger_setId(Passenger* this,int id);
 int Passenger_getId(Passenger* this,int* id);

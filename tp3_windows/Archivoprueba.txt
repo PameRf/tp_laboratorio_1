@@ -1,4 +1,4 @@
 id,Nombre,apellido,precio,codigo de vuelo,tipo de pasajero,estado de vuelo
-1,martin,palermo,813304,as1233,FirstClass,En Vuelo
-2,marcos,rojo,13304,arfff7,Economy,Aterrizado
-3,perdo,perez,23345,la334,Economy,Aterrizado
+4,pamela,freire,13000.000000,ar45,0,0
+3,perdo,perez,23345.000000,667qq,0,0
+1,martin,palermo,813304.000000,as1233,0,0

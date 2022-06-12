@@ -161,6 +161,21 @@ int controller_removePassenger(LinkedList* pArrayListPassenger)
 	return retorno;
 }
 
+int controller_removeList(LinkedList* pArrayListPassenger){
+
+	int retorno=-1;
+	int validar;
+	int opcion;
+	if(pArrayListPassenger != NULL){
+
+		validar= pedirNumero(&opcion, "Esta seguro que desea eliminar la lista: indique 1(Si) o 2(No)", "Error!opcion invalida", 1, 2, 2);
+		if(validar==0 && opcion ==1){
+			Passenger_BorrarLista(pArrayListPassenger);
+			retorno=0;
+		}
+	}
+	return retorno;
+}
 /** \brief Listar pasajeros
  *
  * \param path char*

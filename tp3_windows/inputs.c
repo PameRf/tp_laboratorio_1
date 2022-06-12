@@ -218,7 +218,7 @@ void mostrarSubMenu(){
 			"3. Precio \n"
 			"4. Tipo de pasajero\n"
 			"5. Codigo de vuelo \n"
-			"6. Estado de vuelo");
+			"6. Estado de vuelo\n");
 
 }
 
