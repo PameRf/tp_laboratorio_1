@@ -45,7 +45,8 @@ int main()
     	printf("7. Ordenar pasajeros\n");
     	printf("8. Guardar los datos de los pasajeros en el archivo data.csv (modo texto).\n");
     	printf("9. Guardar los datos de los pasajeros en el archivo data.csv (modo binario).\n");
-    	printf("10. Salir\n");
+    	printf("10. Eliminar lista\n");
+    	printf("11. Salir\n");
 
     	validarMenu=pedirNumero(&option, "Ingrese una opcion \n","Error! opcion invalida\n", 1, 11,2);
 
@@ -54,7 +55,7 @@ int main()
 			{
 				case 1:
 				    if(flagMenu==0){
-						if(controller_loadFromText("Archivoprueba.txt",listaPasajeros)==0){
+						if(controller_loadFromText("data.csv",listaPasajeros)==0){
 							printf("Se cargo el archivo de pasajeros\n");
 							flagMenu=1;
 						}
@@ -67,8 +68,8 @@ int main()
 						}
 					break;
 				case 2:
-					if(flagMenu==0){
-						if(controller_loadFromBinary("Archivoprueba.bin",listaPasajeros)==0){
+					if(flagMenu==3){
+						if(controller_loadFromBinary("data.bin",listaPasajeros)==0){
 							printf("Se cargo el archivo en binario\n");
 							flagMenu=2;
 						}
@@ -77,12 +78,13 @@ int main()
 						}
 					}
 				  else{
-						   printf("No puede cargar dos veces la lista");
+						   printf("No puede cargar dos veces la lista\n");
 					  }
 					break;
 				case 3:
 					if(controller_addPassenger(listaPasajeros)==0){
 						printf("El pasajero se cargo correctamente\n");
+						flagMenu=1;
 					}
 					else{
 
@@ -119,7 +121,7 @@ int main()
 						}
 					break;
 				case 6:
-					if(flagMenu ==1||flagMenu==2 ){
+					if(flagMenu >0 ){
 						if(listaPasajeros != NULL){
 						controller_ListPassenger(listaPasajeros);
 						}
@@ -149,7 +151,7 @@ int main()
 					break;
 				case 8:
 					if(flagMenu==1){
-						if(controller_saveAsText("Archivoprueba.txt",listaPasajeros)==0){
+						if(controller_saveAsText("data.csv",listaPasajeros)==0){
 							printf("El archivo se guardo exitosamente\n");
 							flagMenu=1;
 						}
@@ -164,9 +166,9 @@ int main()
 					break;
 				case 9:
 					if(flagMenu== 1){
-						if(controller_saveAsBinary("Archivoprueba.bin", listaPasajeros)==0){
+						if(controller_saveAsBinary("data.bin", listaPasajeros)==0){
 							printf("El archivo se guardo en binario correctamente\n");
-							flagMenu=0;
+							flagMenu=3;
 						}
 						else{
 							printf("No se pudo cargar el archivo \n");

@@ -5,13 +5,7 @@
 #include "inputs.h"
 #include "parser.h"
 
-/** \brief Carga los datos de los pasajeros desde el archivo data.csv (modo texto).
- *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
- *
- */
+
 int controller_loadFromText(char* path , LinkedList* pArrayListPassenger)
 {
 
@@ -33,13 +27,6 @@ int controller_loadFromText(char* path , LinkedList* pArrayListPassenger)
  return retorno;
 }
 
-/** \brief Carga los datos de los pasajeros desde el archivo data.csv (modo binario).
- *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
- *
- */
 int controller_loadFromBinary(char* path , LinkedList* pArrayListPassenger)
 {
 	int retorno=-1;
@@ -50,7 +37,7 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListPassenger)
 		archivoBinario=fopen(path,"rb");
 
 		if(archivoBinario!=NULL){
-			printf("Entra al if de controler\n");
+			//printf("Entra al if de controler\n");
 			retorno=parser_PassengerFromBinary(archivoBinario, pArrayListPassenger);
 			fclose(archivoBinario);
 		}
@@ -59,13 +46,6 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListPassenger)
  return retorno;
 }
 
-/** \brief Alta de pasajero
- *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
- *
- */
 int controller_addPassenger(LinkedList* pArrayListPassenger)
 {
     int retorno= -1;
@@ -83,13 +63,6 @@ int controller_addPassenger(LinkedList* pArrayListPassenger)
     return retorno;
 }
 
-/** \brief Modificar datos de pasajero
- *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
- *
- */
 int controller_editPassenger(LinkedList* pArrayListPassenger)
 {
 	int retorno=-1;
@@ -125,13 +98,6 @@ int controller_editPassenger(LinkedList* pArrayListPassenger)
     return retorno;
 }
 
-/** \brief Baja de pasajero
- *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
- *
- */
 int controller_removePassenger(LinkedList* pArrayListPassenger)
 {
 	int retorno=-1;
@@ -139,6 +105,7 @@ int controller_removePassenger(LinkedList* pArrayListPassenger)
 	int indiceEncontrado;
 	Passenger * auxPax;
 	int validar;
+	int opcion;
 
 	if(pArrayListPassenger !=NULL){
 
@@ -151,9 +118,12 @@ int controller_removePassenger(LinkedList* pArrayListPassenger)
 				if(auxPax != NULL){
 
 					mostrarUnPax(auxPax);
+					validar=pedirNumero(&opcion,"Esta seguro que quiere dar de baja al pasajero, indique 1(si) o 2(no)\n", "Error! opcion invalida", 1, 2, 2);
+					if(validar==0 && opcion){
 					ll_remove(pArrayListPassenger,indiceEncontrado);
 					Passenger_delete(auxPax);
 					retorno=0;
+					}
 			}
 		  }
     	}
@@ -176,13 +146,7 @@ int controller_removeList(LinkedList* pArrayListPassenger){
 	}
 	return retorno;
 }
-/** \brief Listar pasajeros
- *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
- *
- */
+
 int controller_ListPassenger(LinkedList* pArrayListPassenger){
 
 	int retorno=-1;
@@ -204,13 +168,6 @@ int controller_ListPassenger(LinkedList* pArrayListPassenger){
 	return retorno;
 }
 
-/** \brief Ordenar pasajeros
- *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
- *
- */
 int controller_sortPassenger(LinkedList* pArrayListPassenger)
 {
 	int retorno=-1;
@@ -253,13 +210,6 @@ int controller_sortPassenger(LinkedList* pArrayListPassenger)
     return retorno;
 }
 
-/** \brief Guarda los datos de los pasajeros en el archivo data.csv (modo texto).
- *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
- *
- */
 int controller_saveAsText(char* path , LinkedList* pArrayListPassenger)
 {
 	int retorno=-1;
@@ -303,15 +253,6 @@ int controller_saveAsText(char* path , LinkedList* pArrayListPassenger)
    return retorno;
 }
 
-
-
-/** \brief Guarda los datos de los pasajeros en el archivo data.csv (modo binario).
- *
- * \param path char*
- * \param pArrayListPassenger LinkedList*
- * \return int
- *
- */
 int controller_saveAsBinary(char* path , LinkedList* pArrayListPassenger)
 {
 	int retorno=-1;

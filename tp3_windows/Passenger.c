@@ -473,7 +473,7 @@ int modificarPasajero(Passenger* pPasajero){
 			}
 		 break;
 		 case 3:
-			if(pedirPrecio(&precio,"Ingrese el nuevo precio del vuelo: \n", "Error! el precio es incorrecto: \n", 9000, 4700000, 2)== 0){
+			if(pedirPrecio(&precio,"Ingrese el nuevo precio del vuelo: \n", "Error! el precio es incorrecto: \n", 9000, 600000000, 2)== 0){
 
 				Passenger_setPrecio(pPasajero,precio);
 				retorno=3;
