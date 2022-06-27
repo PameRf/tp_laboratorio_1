@@ -57,15 +57,15 @@ float Calcular_PagoBitcoin(int precio){
 
 }
 
-float  Calcular_PrecioUnitario(int kilometros,int precio){
+float Calcular_PrecioBitcoinOunitario(int precio,int division){
 
-		float precioUnitario;
+		float resultado;
 
 		if(precio> 0){
-			precioUnitario=(float)precio/kilometros;
+			resultado=(float)precio/division;
 		}
 
-	return precioUnitario;
+	return resultado;
 }
 
 float Calcular_DiferenciaDePrecio(int precioUno, int precioDos){

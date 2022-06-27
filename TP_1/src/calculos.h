@@ -27,18 +27,11 @@ int Calcular_PagoDebito(float* resultado, int precio);
 /// @param precio recibe el precio a calcular (pasaje por valor).
 /// @return retorna 0 si la funcion finaliza con exito y -1 si no se pudo obtener el resultado.
 int Calcular_PagoCredito(float* resultado, int precio);
-/// @brief La funcion calcula el precio resultado  dividiendo el precio con BITCOIN
-///
-/// @param precio recibe el precio a calcular (pasaje por valor).
-/// @return el reseultado de cuando le queda abonando con BITCOIN
-float Calcular_PagoBitcoin(int precio);
-/// @brief calcula el precio unitario dividiendo el precio que recibe como parametro  y lo divide por los kilometros
-/// que recibe de igual manera.
-///
-/// @param kilometros recibe los kilometros que ingreso el usuario(pasaje por valor).
-/// @param precio recibe el precio que ingreso el usuario(pasaje por valor).
-/// @return el precio unitario obtenido.
-float Calcular_PrecioUnitario(int kilometros,int precio);
+/// @brief La funcion calcula el precio resultado  dividiendo el precio con BITCOIN o por kilometros
+/// @param division
+/// @param precio
+/// @return el resultado obtenido.
+float Calcular_PrecioBitcoinOunitario(int precio,int division);
 /// @brief  La funcion recibe los dos precios ingresados, compara cual es el precio mayor entre ambos, al precio mayor resto el menor
 /// y brindo el resultado obtenido si ambos precios son iguales retorna 0 diferencia
 ///
