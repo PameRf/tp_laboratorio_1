@@ -20,7 +20,9 @@ int main(void) {
 	setbuf(stdout,NULL);
 
 	int opcionMenu;
-	int flagMenu;
+	int flagKilometros;
+	int flagPrecio;
+	int flagCalculos;
 	int kilometros=0;
 	float precioAerolineas=0;
 	float precioLatam=0;
@@ -37,9 +39,9 @@ int main(void) {
 	int salir;
 
 
-
-
-	flagMenu=0;
+	flagKilometros=0;
+	flagPrecio=0;
+	flagCalculos=0;
 
 	do{
 
@@ -66,17 +68,17 @@ int main(void) {
 				case 1:
 					if(pedirNumero(&kilometros, "Ingrese los Kilometros del vuelo:", "Los kilometros se encuentran fuera del rango \n",
 							400, 13000, 2)==0){
-						flagMenu=1;
+						flagKilometros=1;
 					}
 					break;
 
 				case 2:
-					if(flagMenu==1){
+					if(flagKilometros==1){
 						if(pedirPrecio(&precioAerolineas, "Ingrese el precio del pasaje de Aerolineas Argentinas: ", "El precio que ingreso no es un precio valido\n"
 							, 9000 , 1500000, 2)==0){
 							if(pedirPrecio(&precioLatam, "Ingrese el precio del pasaje de Latam: ", "El precio que ingreso no es un precio valido\n"
 								, 9000 , 1500000, 2)==0){
-								flagMenu=2;
+								flagPrecio=1;
 							}
 						}
 						break;
@@ -86,7 +88,7 @@ int main(void) {
 					}
 					break;
 				case 3:
-					if(flagMenu== 2){
+					if(flagKilometros==1 && flagPrecio== 1){
 						if(Calcular_PagoDebito(&precioConTcDebitoAr, precioAerolineas)==0 && Calcular_PagoDebito(&precioConTcDebitoLa, precioLatam)==0 &&
 						Calcular_PagoCredito(&precioConTcCreditoAr,precioAerolineas)==0 && Calcular_PagoCredito(&precioConTcCreditoLa, precioLatam)==0){
 							precioBitcoinAr=Calcular_PrecioBitcoinOunitario(precioAerolineas, BITCOIN);
@@ -99,8 +101,8 @@ int main(void) {
 								printf("No se puede dividir por 0");
 							}
 							diferenciaPrecios=Calcular_DiferenciaDePrecio(precioAerolineas,precioLatam);
-							printf("Los calculos se realizaron exitosamente");
-							flagMenu=3;
+							printf("Los calculos se realizaron exitosamente\n");
+							flagCalculos=1;
 
 						}
 						break;
@@ -110,8 +112,8 @@ int main(void) {
 					}
 					break;
 				case 4:
-					if(flagMenu==3){
-						printf("Los resultados son: \n");
+					if(flagCalculos==1){
+
 						printf("Los resultados son:\n"
 								  "Latam:\n"
 								  "a) Precio con tarjeta de débito:%.2f\n"
@@ -125,7 +127,7 @@ int main(void) {
 								  "d) Precio unitario:%.2f\n"
 								  "La diferencia de precio es: %.2f\n",precioConTcDebitoLa, precioConTcCreditoLa, precioBitcoinLa,precioUnitarioLa,
 								   precioConTcDebitoAr, precioConTcCreditoAr, precioBitcoinAr, precioUnitarioAr, diferenciaPrecios);
-						flagMenu=4;
+
 						break;
 					}
 					else{
@@ -159,7 +161,7 @@ int main(void) {
 							  "d) Precio unitario:%.2f\n"
 							  "La diferencia de precio es: %.2f\n",precioConTcDebitoLa, precioConTcCreditoLa, precioBitcoinLa,precioUnitarioLa,
 							   precioConTcDebitoAr, precioConTcCreditoAr, precioBitcoinAr, precioUnitarioAr, diferenciaPrecios);
-					   flagMenu=5;
+
 					break;
 				case 6:
 					 pedirNumero(&salir, "Desea salir del menu: \n 1.si \n 2. no \n", "Error opcion invalida \n", 1, 2, 2);
