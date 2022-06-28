@@ -74,9 +74,11 @@ int sonLetras(char cadena[]);
 /// @param mensaje cargo al momento de la llamada
 /// @param len tamanio
 /// @return-1 sino pudo retornarlo o 0 si pudo hacerlo
-int pedirCaracteres(char cadena[],char mensaje[], int len);
+int pedirCaracteres(char mensaje[], char mensajeError[], char cadena[], int len, int reintentos);
+void mostrarMenuPrincipal();
 /// @brief la funcion muestra un submenu
 ///
 void mostrarSubMenu();
+void mostrarMenuSort();
 
 #endif /* INPUTS_H_ */

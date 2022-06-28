@@ -35,6 +35,7 @@ typedef struct {
 /// @param len y la cantidad de los mismo
 /// @return retorna -1 sino pudo inicializarse o 0 si pudo realizarse la funcion.
 int initPassengers(Passenger* list, int len);
+///
 /// @brief la funcion incrementa el numero de id en uno cada vez q se la llama guardando el id anterior (no se repite)
 /// no recibe parametros
 /// @return retorna el numero de id
@@ -48,7 +49,7 @@ int buscarEspacioLibre(Passenger* list, int len);
 /// @brief utilizo un pax auxiliar cargo todos los datos de la estructura y llamo a las diferentes fuciones para la carga del mismo
 ///
 /// @return un pasajero
-Passenger cargarUnPax();
+Passenger cargarUnPax(int* retorno);
 /// @brief  paso los datos del pasajero auxiliar para que se cargue en una posicion libre de la lista de pax
 ///
 /// datos de la estructura se pasan como referencia
@@ -115,7 +116,7 @@ int sortPassengers(Passenger* list, int len, int order);
 /// @param list de pasajeros
 /// @param len tamanio
 /// @return devuelve 0 si se pudo ordenar o -1 sino lo pudo hacer
-int ordenarPassengersPorTipo(Passenger* list, int len);
+int ordenarPassengersPorTipo(Passenger* list, int len,int order);
 /// @brief recorre la lista y si el lugar esta ocupado acumula el precio del vuelo y cuenta los pax, luego calcula el promedio dividiendo el precio acumulado con la cantidad
 /// de pasajeros, llamo a fusion buscarPaxSuperanPromedio pasandole la lista tamanio y el promedio obternido// muestro por pantalla el promedio y la cantidad de
 ///  pasajeros con precios de vuelos que superan el precio promedio
@@ -142,7 +143,7 @@ int sortPassengersByCode(Passenger* list, int len, int order);
 /// @param list de pasajeros
 /// @param len tamanio
 /// @return -1 sino lo pudo ordenar y 0 si lo pudo hacer
-int ordenarPassengersPorStatusFly(Passenger* list, int len);
+int ordenarPassengersPorStatusFly(Passenger* list, int len, int order);
 /// @brief en una variable de pax auciliar harcodeo datos y se los paso a la lista de pasajeros
 ///
 /// @param list de pasajeros

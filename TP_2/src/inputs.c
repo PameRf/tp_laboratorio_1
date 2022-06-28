@@ -183,31 +183,52 @@ int sonLetras(char cadena[]){
 				if(cadena[i]<' '||(cadena[i]>' ' && cadena[i]<'A') || (cadena[i]>'Z' && cadena[i]<'a') || cadena[i]>'z'){
 					retorno=0;
 					break;
-					//printf("Ingreso al if");
+
 				}
 				i++;
 			}
 		}
+
 	return retorno;
 }
 
 
-int pedirCaracteres(char cadena[],char mensaje[], int len){
+
+int pedirCaracteres(char mensaje[], char mensajeError[], char cadena[], int len, int reintentos){
 
 	int retorno;
 	retorno=-1;
 
-	if( cadena != NULL && mensaje != NULL && len>= 0 ){
-
+	if(mensaje != NULL && mensajeError != NULL && cadena != NULL && mensaje != NULL && len>= 0 && reintentos>0){
+		do{
 		printf("%s", mensaje);
-		fflush(stdin);
-		if(fgets(cadena,len,stdin) && sonLetras(cadena)== 1){
 
-				cadena[strlen(cadena)-1] = '\0';
-				retorno=0;
+
+		fflush(stdin);
+			if(fgets(cadena,len,stdin) && sonLetras(cadena)== 1){
+
+					cadena[strlen(cadena)-1] = '\0';
+					retorno=0;
+					reintentos=0;
+			 }
+					else{
+				printf("%s", mensajeError);
+				reintentos--;
 			}
+
+	   }while(reintentos > 0);
 	}
+
   return retorno;
+}
+
+void mostrarMenuPrincipal(){
+	printf("1. ALTAS\n"
+		   "2. MODIFICAR\n"
+		   "3. BAJA\n"
+		   "4. INFORMAR:\n"
+		   "5. Carga forzada de pasajeros \n"
+		   "6. Salir\n");
 }
 
 void mostrarSubMenu(){
@@ -220,4 +241,12 @@ void mostrarSubMenu(){
 			"5. Codigo de vuelo \n"	);
 
 	}
+void mostrarMenuSort(){
+
+	printf( "INFORMAR:\n"
+				"1. Listado de los pasajeros ordenados alfabéticamente por Apellido y Tipo de pasajero.\n"
+				"2. Total y promedio de los precios de los pasajes, y cuántos pasajeros superan el precio\n"
+				"promedio.\n"
+	            "3. Listado de los pasajeros por Código de vuelo y estados de vuelos ‘ACTIVO’\n");
+}
 
