@@ -32,6 +32,7 @@ int main(void) {
 	int opcionSort;
 	int seguir;
 
+
 	validarRetorno=initPassengers(pasajeros, CANTIDAD_PASAJEROS);
 
 	printf("Se pudo inicializar %d\n",validarRetorno);
@@ -46,14 +47,18 @@ int main(void) {
 		switch(opcionMenu){
 			case 1:
 				auxPasajero= cargarUnPax(&validarPax);
-				if(validarPax==0 && addPassenger(pasajeros, CANTIDAD_PASAJEROS, auxPasajero.id, auxPasajero.name, auxPasajero.lastName,auxPasajero.price, auxPasajero.typePassenger,auxPasajero.flycode,auxPasajero.statusFlight)==0){
+				if(validarPax==0){
+					auxPasajero.id=generarId(pasajeros, CANTIDAD_PASAJEROS);
+					//printf(" id en main %d\n",auxPasajero.id);
+					if(auxPasajero.id >0 && addPassenger(pasajeros, CANTIDAD_PASAJEROS, auxPasajero.id, auxPasajero.name, auxPasajero.lastName,auxPasajero.price, auxPasajero.typePassenger,auxPasajero.flycode,auxPasajero.statusFlight)==0){
 
-					printf("Se pudo cargar el pasajero \n");
-					flagMenu=1;
-				}
-				else{
+						printf("Se pudo cargar el pasajero \n");
+						flagMenu=1;
+					}
+					else{
 
-					printf("No se pudo cargar el pasajero\n");
+						printf("No se pudo cargar el pasajero\n");
+					}
 				}
 				break;
 			case 2:
@@ -134,7 +139,7 @@ int main(void) {
 				}
 				break;
 			case 5:
-				cargaForzadaDePax(pasajeros);
+				cargaForzadaDePax(pasajeros, CANTIDAD_PASAJEROS);
 				printPassenger(pasajeros, CANTIDAD_PASAJEROS);
 				flagMenu=2;
 				break;

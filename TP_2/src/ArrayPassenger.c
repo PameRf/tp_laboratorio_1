@@ -20,16 +20,50 @@ int initPassengers(Passenger* list, int len){
 	return retorno;
 }
 
+int buscarUltimoId(Passenger* list, int len){
+	int retorno=-1;
 
-int generarId(){
+	int idMayor=0;
+	int flagId=0;
 
-	static int idPasajero=1001;
+	if (list != NULL && len > 0) {
+		for (int i = 0; i < len; i++) {
+			if(list[i].isEmpty==0){
+				if(flagId==0 || idMayor<list[i].id){
+					idMayor=list[i].id;
+					retorno=idMayor;
+				}
+			}
+		}
+	}
+	//printf("retorno de buscar id %d\n",retorno);
+	return retorno;
+}
 
-    idPasajero++;
+int generarId(Passenger* list, int len){
 
+	 int idPasajero=0;
+	 int auxId;
+
+	 if (list != NULL && len > 0){
+
+		 auxId=buscarUltimoId(list, len);
+		 if(auxId>0){
+			 idPasajero=auxId;
+			 idPasajero++;
+			// printf(" id en aux %d\n",idPasajero);
+		 }
+		 else{
+			 idPasajero=1000;
+			 idPasajero++;
+			 //printf(" id en else %d\n",idPasajero);
+		 }
+	 }
+	// printf(" id en else %d\n",idPasajero);
 	return idPasajero;
 
 }
+
 
 int buscarEspacioLibre(Passenger* list, int len){
 
@@ -129,7 +163,7 @@ Passenger cargarUnPax(int* retorno){
 			if(flagNombre==1 && flagApellido==1 && flagrecio==1 &&flagFliyCode==1 && flagTipo==1 && flagEstado==1){
 
 				unPasajero.isEmpty= 0;
-				unPasajero.id=generarId();
+				//unPasajero.id=generarId();
 				*retorno=-0;
 
     	    }else{
@@ -555,22 +589,30 @@ int ordenarPassengersPorStatusFly(Passenger* list, int len, int order){
 	return retorno;
 }
 
-int cargaForzadaDePax(Passenger* list){
+int cargaForzadaDePax(Passenger* list, int len){
 
 	int retorno;
+	int id;
 
-	Passenger paxsAuxiliares[6]={{1001, "Juan", "Bustamante", 12000,"ar29",1,4, 0} ,
-	            {1002, "Roberto", "Gomez", 13000,"ar33",2,4, 0},
-				{1003, "Ezequiel", "Freire", 150345, "ar33",3,5, 0},
-	            {1004, "Dario", "Gomez",24000, "la69",3,6, 0},
-	            {1005, "Jose", "Romano",356786, "la69",2,4, 0},
-	            {1006, "Laura", "Torres", 23453, "ar29",1,5, 0}};
-	retorno=-1;
+	if(list != NULL && len > 0){
+		id=generarId(list, len);
+		if(id>0){
+			Passenger paxsAuxiliares[6]={{id, "Juan", "Bustamante", 12000,"ar29",1,4, 0} ,
+						{id+1, "Roberto", "Gomez", 13000,"ar33",2,4, 0},
+						{id+2, "Ezequiel", "Freire", 150345, "ar33",3,5, 0},
+						{id+3, "Dario", "Gomez",24000, "la69",3,6, 0},
+						{id+4, "Jose", "Romano",356786, "la69",2,4, 0},
+						{id+5, "Laura", "Torres", 23453, "ar29",1,5, 0}};
+			retorno=-1;
 
-	for(int i=0; i< 6; i++){
+			for(int i=0; i< 6; i++){
 
-		list[i]= paxsAuxiliares[i];
-		retorno=0;
-	}
+					  list[i]= paxsAuxiliares[i];
+						retorno=0;
+
+				}
+			}
+		}
+
 	return retorno;
 }

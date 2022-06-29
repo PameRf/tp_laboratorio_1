@@ -35,11 +35,12 @@ typedef struct {
 /// @param len y la cantidad de los mismo
 /// @return retorna -1 sino pudo inicializarse o 0 si pudo realizarse la funcion.
 int initPassengers(Passenger* list, int len);
+int buscarUltimoId(Passenger* list, int len);
 ///
 /// @brief la funcion incrementa el numero de id en uno cada vez q se la llama guardando el id anterior (no se repite)
 /// no recibe parametros
 /// @return retorna el numero de id
-int generarId();
+int generarId(Passenger* list, int len);
 /// @brief recorre la lista de pasajeros y si encuentra un espacio libre isEmpty en 1
 /// ///
 /// @param list  se pasa la lista de pasajeros
@@ -148,5 +149,5 @@ int ordenarPassengersPorStatusFly(Passenger* list, int len, int order);
 ///
 /// @param list de pasajeros
 /// @return -1 sino lo pudo cargar y 0 si lo pudo hacer
-int cargaForzadaDePax(Passenger* list);
+int cargaForzadaDePax(Passenger* list, int len);
 #endif /* ARRAYPASSENGER_H_ */
