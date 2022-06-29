@@ -35,6 +35,11 @@ typedef struct {
 /// @param len y la cantidad de los mismo
 /// @return retorna -1 sino pudo inicializarse o 0 si pudo realizarse la funcion.
 int initPassengers(Passenger* list, int len);
+/// @brief recorre la lista de pasajeros para buscar el mayor id
+///
+/// @param list
+/// @param len
+/// @return retorna id o -1 sino lo encontro
 int buscarUltimoId(Passenger* list, int len);
 ///
 /// @brief la funcion incrementa el numero de id en uno cada vez q se la llama guardando el id anterior (no se repite)

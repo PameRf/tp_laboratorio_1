@@ -125,7 +125,7 @@ int main(void) {
 
 							printPassenger(pasajeros, CANTIDAD_PASAJEROS);//muestro paxs sin ordenar
 							printf("\n\n");
-							if(sortPassengersByCode(pasajeros, CANTIDAD_PASAJEROS, order)==0 && ordenarPassengersPorStatusFly(pasajeros, CANTIDAD_PASAJEROS, order)== 0){
+							if(sortPassengersByCode(pasajeros, CANTIDAD_PASAJEROS, order)==0  && ordenarPassengersPorStatusFly(pasajeros, CANTIDAD_PASAJEROS, order)== 0){
 								printf("------Pasajeros ordenados por codigo de vuelo y por estado de vuelo si son iguales-------\n");
 								printPassenger(pasajeros, CANTIDAD_PASAJEROS);//paxs ordenados
 								printf("\n\n");
@@ -144,7 +144,7 @@ int main(void) {
 				flagMenu=2;
 				break;
 			case 6:
-				validarRetorno=pedirNumero(&seguir, "Desea salis \n 1.si \n 2.no\n", "Error ingrese una Opcion valida\n", 1, 2, 2);
+				validarRetorno=pedirNumero(&seguir, "Desea salir \n 1.si \n 2.no\n", "Error ingrese una Opcion valida\n", 1, 2, 2);
 				if(seguir==1){
 				printf("Gracias por elegir Smart Travel\n");
 				}

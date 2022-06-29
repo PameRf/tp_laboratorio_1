@@ -529,13 +529,13 @@ int sortPassengersByCode(Passenger* list, int len, int order){
 				ordenado = 1;
 				len--;
 				for (i = 0; i < len; i++) {
-					if (order ==1 && stricmp(list[i].flycode, list[i + 1].flycode)>0){
+					if (order ==1 && stricmp(list[i].flycode, list[i + 1].flycode)>0 ){
 						paxAux = list[i];
 						list[i] = list[i + 1];
 						list[i + 1] = paxAux;
 						ordenado = 0;
 					}
-					else if(order ==0 && stricmp(list[i].flycode, list[i].flycode) <0){
+					else if(order == 0 && stricmp(list[i].flycode, list[i].flycode)< 0){
 						paxAux = list[i];
 						list[i] = list[i + 1];
 						list[i + 1] = paxAux;
@@ -563,14 +563,14 @@ int ordenarPassengersPorStatusFly(Passenger* list, int len, int order){
 				ordenado = 1;
 				len--;
 				for (i = 0; i < len; i++) {
-					if (order ==1 && list[i].statusFlight < list[i + 1].statusFlight){
+					if (order ==1 && stricmp(list[i].flycode, list[i].flycode)== 0 && list[i].statusFlight < list[i + 1].statusFlight){
 
 						paxAux = list[i];
 						list[i] = list[i + 1];
 						list[i + 1] = paxAux;
 						ordenado = 0;
 					}
-					else if (order ==0 && list[i].statusFlight > list[i + 1].statusFlight){
+					else if (order ==0 && stricmp(list[i].flycode, list[i].flycode)== 0 && list[i].statusFlight > list[i + 1].statusFlight){
 
 						paxAux = list[i];
 						list[i] = list[i + 1];
@@ -600,7 +600,7 @@ int cargaForzadaDePax(Passenger* list, int len){
 						{id+2, "Ezequiel", "Freire", 150345, "ar33",3,5, 0},
 						{id+3, "Dario", "Gomez",24000, "la69",3,6, 0},
 						{id+4, "Jose", "Romano",356786, "la69",2,4, 0},
-						{id+5, "Laura", "Torres", 23453, "ar29",1,5, 0}};
+						{id+5, "Laura", "Torres", 23453, "la29",1,5, 0}};
 			retorno=-1;
 
 			for(int i=0; i< 6; i++){
