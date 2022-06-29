@@ -36,7 +36,6 @@ int buscarUltimoId(Passenger* list, int len){
 			}
 		}
 	}
-	//printf("retorno de buscar id %d\n",retorno);
 	return retorno;
 }
 
@@ -48,18 +47,17 @@ int generarId(Passenger* list, int len){
 	 if (list != NULL && len > 0){
 
 		 auxId=buscarUltimoId(list, len);
-		 if(auxId>0){
+		 if(auxId != -1){
 			 idPasajero=auxId;
 			 idPasajero++;
-			// printf(" id en aux %d\n",idPasajero);
 		 }
 		 else{
 			 idPasajero=1000;
 			 idPasajero++;
-			 //printf(" id en else %d\n",idPasajero);
+
 		 }
 	 }
-	// printf(" id en else %d\n",idPasajero);
+
 	return idPasajero;
 
 }

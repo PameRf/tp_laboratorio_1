@@ -13,7 +13,7 @@
 #include <string.h>
 #include "inputs.h"
 #include "ArrayPassenger.h"
-#define CANTIDAD_PASAJEROS 10
+#define CANTIDAD_PASAJEROS 2000
 
 
 int main(void) {
@@ -35,7 +35,7 @@ int main(void) {
 
 	validarRetorno=initPassengers(pasajeros, CANTIDAD_PASAJEROS);
 
-	printf("Se pudo inicializar %d\n",validarRetorno);
+	//printf("Se pudo inicializar %d\n",validarRetorno);
 
 	do{
 
@@ -49,7 +49,7 @@ int main(void) {
 				auxPasajero= cargarUnPax(&validarPax);
 				if(validarPax==0){
 					auxPasajero.id=generarId(pasajeros, CANTIDAD_PASAJEROS);
-					//printf(" id en main %d\n",auxPasajero.id);
+
 					if(auxPasajero.id >0 && addPassenger(pasajeros, CANTIDAD_PASAJEROS, auxPasajero.id, auxPasajero.name, auxPasajero.lastName,auxPasajero.price, auxPasajero.typePassenger,auxPasajero.flycode,auxPasajero.statusFlight)==0){
 
 						printf("Se pudo cargar el pasajero \n");
